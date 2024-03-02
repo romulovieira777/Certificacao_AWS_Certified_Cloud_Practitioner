@@ -3,3 +3,9 @@ https://aws.amazon.com/pt/
 
 Amazon Web Services Cettified Cloud Practitioner
 https://aws.amazon.com/pt/certification/certified-cloud-practitioner/?c=sec&sec=resources
+
+Amazon Lightsail
+https://aws.amazon.com/pt/lightsail/
+
+Nível gratuito da AWS
+https://aws.amazon.com/pt/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all
