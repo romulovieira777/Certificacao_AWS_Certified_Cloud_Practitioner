@@ -1,0 +1,5 @@
+Amazon Web Services
+https://aws.amazon.com/pt/
+
+Amazon Web Services Cettified Cloud Practitioner
+https://aws.amazon.com/pt/certification/certified-cloud-practitioner/?c=sec&sec=resources
