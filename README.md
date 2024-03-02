@@ -1,0 +1,2 @@
+# Certificacao_AWS_Certified_Cloud_Practitioner
+Curso Certificação AWS Certified Cloud Practitioner
