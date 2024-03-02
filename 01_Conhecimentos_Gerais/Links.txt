@@ -9,3 +9,9 @@ https://aws.amazon.com/pt/lightsail/
 
 Nível gratuito da AWS
 https://aws.amazon.com/pt/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all
+
+Amazon Web Services Lightsail Pricing
+https://aws.amazon.com/pt/lightsail/pricing/
+
+Name Cheap
+https://www.namecheap.com/
