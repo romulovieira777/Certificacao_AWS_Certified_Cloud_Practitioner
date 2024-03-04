@@ -15,3 +15,6 @@ https://aws.amazon.com/pt/lightsail/pricing/
 
 Name Cheap
 https://www.namecheap.com/
+
+Regiões e zonas de disponibilidade
+https://aws.amazon.com/pt/about-aws/global-infrastructure/regions_az/
