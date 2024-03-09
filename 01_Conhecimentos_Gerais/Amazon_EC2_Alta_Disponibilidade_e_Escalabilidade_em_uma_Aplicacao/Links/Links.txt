@@ -1,0 +1,2 @@
+AWS EC2
+https://aws.amazon.com/pt/ec2/?gclid=Cj0KCQiArrCvBhCNARIsAOkAGcUWhy0rCoJ--eq3QSUH8M1Vh_ESz04u2votQOmPA8tlYhFTu2VW-fUaAjWIEALw_wcB&trk=273714db-4e14-42ba-be75-e3e36c4bc786&sc_channel=ps&ef_id=Cj0KCQiArrCvBhCNARIsAOkAGcUWhy0rCoJ--eq3QSUH8M1Vh_ESz04u2votQOmPA8tlYhFTu2VW-fUaAjWIEALw_wcB:G:s&s_kwcid=AL!4422!3!589890540382!e!!g!!aws%20ec2!16393914376!135045745338
