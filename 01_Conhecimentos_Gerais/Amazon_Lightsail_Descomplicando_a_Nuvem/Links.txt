@@ -18,3 +18,12 @@ https://www.namecheap.com/
 
 Regiões e zonas de disponibilidade
 https://aws.amazon.com/pt/about-aws/global-infrastructure/regions_az/
+
+Conectar uma WordPress instância a um bucket do Lightsail
+https://docs.aws.amazon.com/pt_br/lightsail/latest/userguide/amazon-lightsail-connecting-buckets-to-wordpress.html
+
+Criar e anexar discos de armazenamento em bloco adicionais do Lightsail para sua instância baseada em Linux
+https://docs.aws.amazon.com/pt_br/lightsail/latest/userguide/create-and-attach-additional-block-storage-disks-linux-unix.html
+
+Apache Labs
+https://github.com/alura-cursos/apache-labs
