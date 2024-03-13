@@ -1,0 +1,30 @@
+Vamos ligar a máquina novamente, clicando em "Ações > Iniciar instância". Quando fizemos isso, nosso IP e nosso DNS
+mudaram.
+
+Precisamos resolver isso. De algum forma, precisamos criar um IP fixo para essa máquina.
+
+Obs: Mesmo que você nunca desligue sua máquina, ela pode ter uma pane. Por isso, o ideal é alocar um IP.
+
+No menu da esquerda, vamos acessar a página "IPs elásticos", o serviço de registro de IP da Amazon. Vamos clicar em
+"Aloca endereço IP elástico". Deixaremos todas as opções no padrão e clicar, simplesmente, em "Alocar".
+
+Com o IP alocado, podemos clicar no seu endereço e, em seguida, na opção "Associar endereço IP elástico". Vamos manter
+"Instância" selecionada em "Tipo de recurso". Vamos inserir nossa instância logo abaixo. Agora basta clicar em "Associar"
+
+A partir de agora, o IP apresentando na tela será redirecionado à nossa instância. Podemos copiá-lo e tentar acessá-lo
+em uma nova aba. Teremos sucesso nisso.
+
+O IP antigo não está mais associado à nossa instância. Porém, agora podemos desligar nossa máquina quantas vezes
+quisermos, porque o IP permanecerá o mesmo.
+
+Como os IPs são separados das instâncias, eles também geram cobranças. Por isso, quando remover a instância, poderá
+ainda ser cobrado pelo IP. O endereço de IP só não é cobrado se estiver associado a uma instância em funcionamento. Caso
+a instância estiver parada ou o IP não estiver associado a uma instância, ele resultará em cobrança.
+
+Obs: Se sua máquina tiver mais de um IP associado a ela, os IPs extras serão cobrados.
+
+Podemos ver todos os detalhes de precificação na documentação do AWS EC2.
+
+Dessa forma, definimos um IP estático para a nossa instância.
+
+No próximo vídeo, vamos manipular bancos de dados com RDS.

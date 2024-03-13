@@ -1,0 +1,13 @@
+Nós já vimos todas as etapas para, a partir de uma instância, criar uma imagem.
+
+Para criarmos uma imagem a partir de uma instância, o que devemos fazer?
+
+Selecione uma alternativa:
+
+A) Parar ou não a instância, tanto faz.
+
+B) Parar a instância e criar a imagem. -> Alternativa correta.
+
+Parar a instância sempre é a recomendação. Desta forma, garantimos a integridade dos dados.
+
+C) Não devemos parar a instância, a AWS garante a integridade dos dados.

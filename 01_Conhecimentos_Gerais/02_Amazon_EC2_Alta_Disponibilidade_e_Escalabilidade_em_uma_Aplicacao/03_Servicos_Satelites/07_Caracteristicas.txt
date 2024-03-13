@@ -1,0 +1,13 @@
+Utilizar um banco de dados como serviço pode trazer algumas vantagens bem interessantes para o projeto.
+
+Dentre as alternativas abaixo, qual é uma característica do Amazon RDS (Relational Database Service)?
+
+Selecione uma alternativa:
+
+A) Estão disponíveis vários templates, como de produção e teste, todos eles disponíveis dentro do Free tier.
+
+B) É possível utilizar vários tipos de bancos de dados, como MySQL, MariaDB, Oracle, etc. -> Alternativa correta.
+
+Podem ser utilizados vários bancos de dados, mas nem todos estão na categoria Free tier.
+
+C) As opções de backup automático estão disponíveis somente no template de produção.

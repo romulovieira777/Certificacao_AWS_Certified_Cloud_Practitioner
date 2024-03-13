@@ -1,0 +1,14 @@
+O uso do Elastic IP garante que a sua máquina mantenha um IP único, mesmo que seja desligada.
+
+Como o recurso de IP Dedicado funciona em relação à cobrança?
+
+Selecione uma alternativa:
+
+A) Um IP por EC2 é gratuito, independente do estado da máquina.
+
+B) Um IP por EC2 é gratuito, caso a máquina mantenha-se ligada. -> Alternativa Correta.
+
+Esta é a condição para que você tenha o Elastic IP de forma gratuita. Caso haja mais IPs anexados a uma instância ou a
+instância seja desligada, você será cobrado.
+
+C) Este serviço é sempre cobrado, baseado nas horas de utilização.
