@@ -1,0 +1,10 @@
+Vimos nessa aula como configurar um balanceador de carga para dividir as requisições entre duas instâncias nossas.
+
+Para onde um load balancer consegue redirecionar o tráfego?
+
+Diretamente para instâncias EC2.
+
+Diretamente para IPs.
+
+Para grupos de destino (target groups). -> Alternativa correta.
+ -> Para usarmos o load balancer da AWS nós precisamos definir um target group que pode ser para instâncias, IPs, etc.

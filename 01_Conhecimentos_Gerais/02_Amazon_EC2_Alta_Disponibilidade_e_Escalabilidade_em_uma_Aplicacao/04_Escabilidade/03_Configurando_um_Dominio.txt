@@ -1,0 +1,28 @@
+Agora nosso load balancer já está funcional.
+
+Vamos aprender a configurar domínios que já existem e a fazê-los apontar para esse load balancer. Vamos copiar o "Nome
+do DNS". Podemos adicionar um CNAME, ou seja, um apelido, importado de outro domínio para este.
+
+Para exemplificar, o instrutor acessa um domínio já existente, que lhe é pessoal. Para fazer isso, clicamos em
+"Gerenciar registros personalizados", para dar início à criação de um novo domínio.
+
+Vamos clicar em "Criar novo domínio" e, na nova caixa de texto que surgirá, vamos digitar "aws". Agora, selecionaremos o
+tipo "CNAME". Na coluna de dados, vamos inserir o endereço do load balancer.
+
+Como a propagação de DNS não é instantânea, isso poderá levar algum tempo. Podemos perceber, porém, que não precisaremos
+configurar nada na AWS. Basta aponta para o domínio do load balancer.
+
+Também é possível registrar e configurar domínios dentro da AWS. Para aprender, faça o treinamento de Amazon Route 53.
+
+Vamos acessar o terminal para executar testes. Vamos executar o comando dig e inserir o domínio. No caso do instrutor, o
+domínio é "aws.dias.dev":
+
+dig aws.dias.dev
+
+Com o comando, descobriremos para onde o DNS aponta. Por enquanto, ele aponta apenas para o Google Domains. Ainda
+precisamos mandá-lo para a AWS.
+
+Depois de algum tempo, poderá, uma nova sessão surgirá para direcioná-lo também ao load balancer. Ao acessar
+"aws.dias.dev", conseguiremos acessar o balanceador de carga.
+
+O assunto do próximo vídeo é auto scaling.
