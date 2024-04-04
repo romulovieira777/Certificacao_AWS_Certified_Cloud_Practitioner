@@ -1,0 +1,19 @@
+Parabéns, você chegou ao fim de mais um treinamento em AWS aqui na Alura.
+
+Demos nossos primeiros, efetivamente, na AWS. Relembramos alguns conceitos, como o que é o EC2, como criar instâncias e
+mais. Aprendemos também a configurar security groups, que gerenciam o acesso a essas instâncias que criamos.
+
+Falamos também sobre regiões e zonas de disponibilidade. Na sequência, aprendemos a pré-configurar instâncias,
+utilizando a imagem da Bitnami, e, inclusive, criamos um nova imagem.
+
+Criamos um IP e o atribuímos a uma instâncias específica, para que o IP não mude sempre que a instância desligar.
+Também manipulamos o RDS, porque, quando lidamos com a web, sempre lidamos com bancos de dados também.
+
+Fizemos com que uma instância do EC2 se comunicasse com o RDS. Depois, aprendemos a fazer balanceamento de carga e a
+manipular, tambem, o Auto Scaling.
+
+No final do treinamento, aprendemos a utilizar a linha de comando.
+
+Com isso, já temos um domínio muito satisfatório do EC2.
+
+Até a próxima!

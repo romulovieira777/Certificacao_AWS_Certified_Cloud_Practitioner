@@ -1,0 +1,13 @@
+Vimos nesse vídeo como executar comandos que gerenciam nossas instâncias EC2 usando o AWS CLI.
+
+Como é o “formato” de um comando usando a AWS CLI?
+
+a) aws servico acao parametros -> Alternativa correta
+
+Para o serviço EC2, por exemplo, sempre começamos o comando com aws ec2. Para executar a ação de parar uma instância,
+fazemos aws ec2 stop-instances --instance-ids {id da instância}. Sendo assim, o serviço é ec2, a ação é stop-instances e
+os ids são os parâmetros.
+
+b) aws servico parametros acao
+
+c) aws acao servico parametros
