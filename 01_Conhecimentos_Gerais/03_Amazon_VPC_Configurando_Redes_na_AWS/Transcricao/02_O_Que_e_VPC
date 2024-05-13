@@ -1,0 +1,57 @@
+Antes de configurarmos ou criarmos uma nova VPC, vamos entender o que é essa sigla e para que serve essa funcionalidade
+no AWS.
+
+Começando pela sigla, VPC significa Virtual Private Cloud (tradução: Nuvem Virtual Privada). VPC, portanto, é uma rede
+que iremos configurar no ambiente da AWS.
+
+O VPC é "Virtual" porque, ainda que seja uma rede e que façamos configurações de rede, não iremos fisicamente instalar
+cabos e switches. Tudo será feito de forma programática, pelo console do AWS.
+
+Também é "Privada" por termos isso dentro da nossa estrutura do AWS, e definirmos o que queremos ou não expor, ou seja,
+com as nossas configurações de rede. Então uma VPC é como uma rede comum em um ambiente de on premise.
+
+Imaginemos esse ambiente de on premise. Nele temos um data center local na empresa, e o espaço físico dele é como a AWS,
+com todas as regiões. Nesse espaço físico podemos ter o servidor de arquivos, servidor web e de banco de dados.
+
+Então dentro do servidor precisaremos de configurações de rede para o servidor web acessar o servidor de banco dados.
+Por sua vez o servidor de banco de dados poder sair para Internet e realizar atualizações, entre outras coisas.
+
+Portanto essa atualização que, em um ambiente on premise, seria feito através de roteadores e switches, faremos usando
+os serviços disponibilizado no Amazon VPC. Então o VPC é uma rede que iremos configurar.
+
+Pensem em tudo que aprendemos sobre AWS. Já fizemos o treinamento de EC2. Nele criamos instâncias que podiam se
+comunicar e podiam ser acessadas a partir da Internet, assim como elas mesmas poderiam acessar a Internet. Todas essas
+configurações que recebemos por padrão são feitas através do serviço de VPC da Amazon. Todos esses detalhes serão
+entendidos durante esse curso.
+
+A VPC fornece algumas funcionalidades para nós, como descobrimos na página da documentação do Amazon VPC. Vamos ler as
+primeiras funcionalidades da lista para conseguirmos entender.
+
+Temos a rede em si, que é o VPC, e a documentação diz que se trata de uma rede virtual muito próxima a uma rede
+tradicional, que operaríamos no data center em um servidor on premise. Em seguida temos os Subnets, que são as sub-redes
+que teremos dentro da AWS. Falaremos mais sobre isso, mas cada uma das sub-redes dentro da rede terão um intervalo de
+IPs que poderemos utilizar, os IP addressing.
+
+Teremos também tabelas de roteamento, sejam portões de entrada e saída, teremos endpoints para configurar a comunicação.
+Notem que tudo que for relacionado a rede e comunicação entre serviços, faremos usando o VPC.
+
+Um bom ponto para começarmos é entender o que já é fornecido por padrão para nós, então faremos login no Console da
+Amazon e na barra superior, no lado direito, temos o campo Regions (Regiões), onde podemos selecionar a região. A minha
+região padrão está como Norte da Virgínia, conhecida como "us-east-1".
+
+Eu vou para outra região diferente do padrão, porque nessa conta padrão eu já fiz alguns serviços. Então mudaremos de
+região para ser como se tivéssemos acabado de criar a conta. Para isso eu vou selecionar o "Leste dos EUA (Ohio)", a
+"us-east-2".
+
+Ao selecionarmos essa região, teremos um ambiente mais "limpo", ou seja, sem tantos serviços já configurados. Assim
+começaremos do mesmo ponto. Caso já tenham usado essa região, selecione alguma na qual vocês não têm nada configurado.
+
+Um detalhe importante sobre custos é que a VPC em si não tem custos, porque ela é uma configuração necessária para todos
+os serviços funcionarem. Quando chegarmos em algum serviço que possua custo ou vou deixar avisado, como em um Para Saber
+Mais. Mesmo assim, não precisam se preocupar, porque o que faremos nesse curso não terá custos.
+
+Nossa próxima etapa é fazer o que já fizemos em cursos anteriores, como criar uma nova instância de EC2, mas agora
+iremos nos atentar às configurações de rede. Entenderemos quais configurações estão disponíveis para nós e, a partir
+disso, evoluiremos no nosso conhecimento de VPC.
+
+Então no próximo vídeo criaremos uma instância de EC2 enquanto analisamos a parte de redes.

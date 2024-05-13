@@ -1,0 +1,19 @@
+Nessa aula você aprendeu o básico de AWS VPC para criar instâncias. Chegou a hora de colocar em prática seus
+conhecimentos.
+
+Vamos lá?
+
+Opinião do instrutor
+
+Para começar a praticar, siga os seguintes passos:
+
+1) No console da AWS, vá até a área de EC2;
+2) Inicie a criação de uma nova instância EC2 chamada “primeira-maquina”;
+3) Deixe todas as opções como padrão até chegar à parte de configurações de rede;
+4) Com a VPC padrão selecionada, selecione a sub-rede onde a instância será criada;
+5) Habilite a atribuição automática de um IP público;
+6) Adicione o grupo de segurança padrão da VPC (o grupo se chama default);
+7) Finalize a criação da instância;
+8) Navegue pela aba de “Rede” da instância e confira os IPs atribuídos (um público e um privado);
+9) Acesse a área de VPC e confira que há uma VPC com uma sub-rede para cada zona de disponibilidade da região
+selecionada.

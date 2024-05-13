@@ -1,0 +1,6 @@
+Nessa aula, nós:
+    - Entendemos que VPC, basicamente, é o serviço da Amazon que nos permite configurar a rede de nossa
+    infraestrutura na AWS;
+    - Conhecemos a VPC padrão e as sub-redes que vêm configuradas nela, entendendo que cada sub-rede está em uma zona de
+    disponibilidade diferente;
+    - Criamos uma nova instância EC2 selecionando de forma consciente as configurações de rede.

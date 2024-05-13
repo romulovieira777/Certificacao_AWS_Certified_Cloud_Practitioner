@@ -1,0 +1,37 @@
+Oi, pessoal! Boas-vindas à Alura! Eu sou Vinicius Dias e vou guiar vocês neste curso Amazon VPC: Configurando redes na
+AWS, onde aprenderemos sobre Virtual Private Cloud (VPC) na AWS.
+
+Vinicius Dias é uma pessoa de pele clara, olhos escuros e cabelos pretos. Usa bigode e cavanhaque, e tem cabelo curto.
+Veste camiseta azul e está sentado em uma cadeira preta. Ao fundo, há uma parede lisa com iluminação azul claro.
+
+A primeira etapa desse curso será entender o que é uma VPC, mas já dou o spoiler que a VPC é como uma rede na AWS. Então
+aprenderemos muito!
+
+Antes de falar o que aprenderemos, quero deixar algo bem claro: fazer configurações de VPC, criar sub-redes, e várias
+outras coisas que entenderemos nesse curso, não é uma configuração cotidiana. Portanto é comum que aprendam os conceitos
+e depois, quando precisar fazer isso no seu local de trabalho, sintam a necessidade de revisar alguns conteúdos e a
+documentação.
+
+Ainda assim é muito importante entendermos sobre VPCs para montar uma estrutura em cloud (nuvem). Portanto, nesse curso
+entenderemos que é VPC e relembraremos recursos do VPC aprendidos nos cursos anteriores.
+
+Além disso nós revisaremos conceitos de segurança, então aprenderemos sobre Security groups (grupos de segurança) e
+outras ferramentas. E saindo da segurança como firewall, aprenderemos outra parte de segurança, que é separar uma
+sub-rede privada, não deixando que ela acesse a Internet e nem que seja acessada via Internet.
+
+Com isso teremos alguns problemas que vamos corrigir conhecendo o Internet Gateway e o NAT Gateway. Depois de ajustar
+essas permissões, entenderemos como implementar a tabela de rotas, fazendo com que nossa rede privada seja
+momentaneamente acessível pela e para Internet.
+
+Também conheceremos o VPC Endpoints, que liga nossa VPC de a serviços da Amazon de forma direta, sem precisarmos passar
+pela Internet. No final, enviaremos todo curso que acontece na VPC como logs para o CloudWatch e aprenderemos como
+acessar o servidor que está na rede sub-rede privada via servidor intermediário.
+
+Tem bastante coisa para aprendermos nesse curso, mas saibam que não aprenderão tudo sobre VPC, muito menos tudo sobre
+AWS. A intenção desse curso é introduzir conceitos de VPC na AWS, então vocês aprenderão bastante, mas não tudo.
+
+Contamos com vocês para se aprofundarem nos conhecimentos da AWS ao finalizarem esse curso. E caso tenham dúvidas ao
+longo das aulas, não hesitem e abram um tópico no fórum do curso, ou acessem nosso servidor do Discord para fazer sua
+pergunta e sanar sua dúvida. É muito importante que tudo seja esclarecido para vocês seguirem o aprendizado sobre AWS.
+
+Espero vocês no próximo vídeo para entenderem o que é o VPC e como o utilizaremos durante esse curso.

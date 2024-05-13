@@ -1,0 +1,15 @@
+Maria está configurando uma nova infraestrutura de uma aplicação web na AWS e vai utilizar duas instâncias EC2 como seus
+servidores de aplicação. Ao criar tais instâncias, ela pode selecionar em qual das sub-redes da VPC escolhida as
+instâncias serão criadas. Maria está utilizando a VPC padrão. Então, Maria decidiu criar cada uma das instâncias em uma
+sub-rede diferente.
+
+Por que seria vantajoso, no caso de Maria, ter cada instância criada em uma sub-rede diferente?
+
+1 - Porque colocar cada sub-rede em uma zona de disponibilidade diferente aumenta a confiança da infraestrutura.
+Ao colocar cada instância em uma sub-rede diferente, Maria estará colocando também cada instância em uma zona de
+disponibilidade diferente, o que aumenta a confiança da infraestrutura, já que é possível que uma zona de
+disponibilidade fique fora do ar enquanto a outra permaneça disponível.
+
+2 - Porque dividir instâncias em sub-redes diferentes aumenta a performance da aplicação.
+
+3 - Porque dividir as instâncias em sub-redes diferentes facilita a configuração da infraestrutura.

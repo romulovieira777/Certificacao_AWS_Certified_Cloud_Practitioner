@@ -1,0 +1,5 @@
+O que é Amazon VPC?
+https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/what-is-amazon-vpc.html
+
+IP Calculator
+https://jodies.de/ipcalc
