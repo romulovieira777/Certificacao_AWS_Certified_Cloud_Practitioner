@@ -1,0 +1,91 @@
+Boas-vindas de volta a mais um curso desse treinamento sobre VPC no qual estamos configurando redes na AWS.
+
+Agora, estamos no painel da VPC, no console da AWS. Vamos para a seção de "Segurança" no meu lateral onde temos:
+
+    - ACLs da rede
+    - Grupos de segurança
+
+Essa parte de grupos de segurança (security groups) permite o controle de acesso a algumas instâncias. Isso é uma
+configuração de segurança da rede, por isso faz parte da VPC também.
+
+Isso fica também no painel da EC2 e de alguns outros serviços que precisam desse controle, mas é um serviço de rede.
+Vamos relembrar como fazer a configuração de um grupo de segurança.
+
+Clicaremos em "Grupos de segurança". Já temos o grupo de segurança padrão, que permite todo o acesso, agora criaremos um
+novo grupo de segurança.
+
+Clique em "Criar grupo de segurança" e preencheremos os campos da seguinte forma.
+
+O nome do grupo de segurança será ssh e a descrição será ssh também. Um detalhe interessante e chato é que essas
+descrições não podem ter espaço nem caracteres especiais. Por algum motivo, essa "descrição" não é, na verdade, uma
+descrição.
+
+Continuando, em Regras de entrada vamos informar quais fluxos permitimos que entrem em uma instância que for parte desse
+grupo de segurança.
+
+Vamos clicar em "Adicionar regra" e no campo Tipo vamos inserir a regra SSH. Ao selecionar "SSH" no tipo da regra de
+entrada, ele automaticamente preenche os campos "Protocolo" e "Intervalo de portas"
+
+    Tipo: SSH
+
+    Protocolo: TCP
+
+    Intervalo de portas: 22
+
+No campo "Tipo de origem" vamos selecionar a opção "Meu IP". Essa opção pega o meu IP público e o insere no campo
+"Origem".
+
+Ou seja, partindo do meu IP para qualquer instância que tenha esse grupo de segurança, o acesso SSH estará liberado. Em
+"Descrição" colocaremos "acesso-ssh".
+
+    Tipo de origem: Meu IP
+
+    Origem: 168.205.101.49/32
+
+    Descrição - opcional: acesso-ssh
+
+Em "Regras de saída", vamos manter a opção "Todo o tráfego" para que consigamos, por exemplo, acessar a internet a
+partir de uma instância que possui esse grupo de segurança.
+
+Um detalhe interessante é que grupos de segurança só possuem regras de permitir alguma coisa. Não podemos, por exemplo,
+permitir todo o tráfego de saída para a internet e bloquear algum IP específico. Isso não é possível.
+
+Se quisermos adicionar uma regra de proibir algo podemos usar uma outra ferramenta sobre a qual falaremos mais adiante.
+
+No caso, embora isso não faça sentido, vou deixar a minha regra de saída nesse grupo de segurança, para que todas as
+máquinas que eu consiga acessar via SSH possam acessar a internet também.
+
+    Regra de saída 1
+
+    Tipo: todo o tráfego
+
+    Protocolo: Tudo
+
+    Intervalo de portas: Tudo
+
+    Tipo de destino: Personalizado
+
+    Destino: 0.0.0.0/0
+
+Em seguida, podemos clicar em "Criar grupo de segurança".
+
+Recapitulando, os grupos de segurança só permitem a adição de regras de permissão. Se quisermos bloquear algum IP, por
+exemplo, não conseguiremos fazer somente com grupos de segurança. E, outro detalhe, imagine que todo o tráfego de
+entrada para minha rede está bloqueado e todo o tráfego de saída para minha rede está bloqueado.
+
+Mas eu libero a entrada pela porta 80, quando libero no grupo de segurança, libero também a resposta para essa porta.
+
+Ou o contrário, se está tudo bloqueado, nenhuma entrada na minha máquina é permitida, mas permito a saída para
+acessarmos a internet. Então, também permito que esses pacotes voltem.
+
+Basicamente, um security group é o que chamamos de stateful, ele permite que sua conexão seja completada, que ela vá até
+o final.
+
+Então, se enviamos um pacote que foi permitido pelo security group, ele permite a resposta dele também. Se recebo um
+pacote que foi permitido pelo security group, ele também permite a resposta dele.
+
+Agora que já criamos um grupo de segurança, vamos criar duas instâncias e fazer elas se comunicarem. Já trabalhamos com
+isso, mas é sempre bom relembrar para analisar esses detalhes de rede. Vou criar uma instância em uma sub-rede, outra
+instância em outra sub-rede, e quero que elas se comuniquem sem nenhum problema.
+
+Vamos fazer isso no próximo vídeo!

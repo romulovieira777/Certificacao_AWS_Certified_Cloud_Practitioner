@@ -1,0 +1,116 @@
+Como disse, vamos usar uma nova ferramenta, dentro da VPC, para filtrar melhor nossos acessos.
+
+Vamos acessar o painel da VPC. No menu lateral, na parte de segurança, temos "ACLs da rede". ACL significa "Access
+Control List" ou "lista de controle de acesso".
+
+Isso funciona exatamente igual a um firewall. A diferença é que podemos ter várias listas e cada uma dessas listas ter
+várias regras. E cada uma dessas listas de regras podem ser adicionadas a uma ou mais sub-redes.
+
+Então, agora vamos criar uma regra na segunda sub-rede para que todo tráfego seja permitido a partir da primeira
+sub-rede e bloqueado se vier de outro lugar.
+
+Na página de ACLs da rede, vamos clicar em "Criar Network ACL" e preencher os campos da seguinte forma.
+
+No campo "nome" vou deixar redes-ab; no campo VPC usarei a VPC padrão, porque ainda é a única que eu tenho. No meu caso
+a VPC padrão é vpc-04145a57a0e077d62. Não vou adicionar tags. Por fim clicamos em "Criar Network ACL".
+
+De volta à lista de ACLs da rede podemos editar o nome dessa ACL recém-criada a ser exibido na lista, vamos deixar
+conforme criamos: redes a-b.
+
+Em seguida, podemos clicar no número de ID dessa ACL. Vai abrir uma página em que podemos ver as regras de entrada e
+veremos que todo o tráfego está bloqueado. Na aba de regras de saída todo o tráfego também está bloqueado.
+
+Ou seja, se adicionarmos essa ACL a alguma sub-rede agora, essa sub-rede ficará inacessível, não conseguiremos entrar
+nem sair.
+
+Então vamos adicionar alguma regra de entrada. Para isso, vamos clicar em "Editar regras de entrada" e inserir
+informações da regra que queremos adicionar.
+
+No campo "número da regra" é onde colocaremos a prioridade, a primeira regra que casar com as condições do pacote que
+está entrando ou saindo, será avaliada. Vamos inserir o número "1", para que seja a primeira regra definida.
+
+No campo "Tipo", selecionaremos a opção "Todo o tráfego" e no campo "Origem" vamos inserir 172.31.0.0/20. Ou seja, vamos
+permitir qualquer entrada desde que venha da rede 172.31.0.0/20. Qualquer coisa que vier da primeira sub-rede será
+permitido. Por fim, clicamos em "Salvar alterações".
+
+Agora, em uma nova aba do navegador, vamos acessar o painel da EC2, vamos na lista de instâncias pegar o comando para
+acessar a segunda-maquina no terminal.
+
+ssh -i "aws-ohio.pem" ec2-user@ec2-13-58-82-28.us-east-2.compute.amazonaws.com
+
+Não deveríamos conseguir acessar, mas conseguimos. Porque?
+
+Vamos voltar na aba VPC no navegador. Na ACL temos uma aba nomeada "Associações de sub-rede". Repare que a ACL não está
+conectada a nenhuma rede ainda. Isso que está faltando para funcionar corretamente.
+
+Vamos clicar em "Editar associações de sub-rede" e deixaremos a rede b, us-east-2b, selecionada. E clicaremos em "Salvar
+alterações".
+
+Agora, ao voltar para o terminal e tentarmos digitar alguma coisa, não conseguimos porque fomos desconectados. Depois de
+um tempo o terminal vai entender e liberar, mas para não perder muito tempo vamos abrir uma nova aba do terminal e
+acessar a pasta em que estávamos, a ".ssh".
+
+cd .ssh
+
+Vamos, novamente, tentar conectar à segunda máquina.
+
+ssh -i "aws-ohio.pem" ec2-user@ec2-13-58-82-28.us-east-2.compute.amazonaws.com
+
+Note que não conseguimos mais, não temos mais acesso à segunda máquina.
+
+Vamos interromper essa conexão e tentar conectar à primeira máquina. Mas vamos adicionar um parâmetro ao comando, depois
+de ssh colocaremos -A, isso vai enviar o agente ssh à máquina em que estamos nos conectando. Dessa forma, a chave de
+conexão "aws-ohio.pem" estará disponível na AWS também.
+
+ssh -A -i "aws-ohio.pem" ec2-user@ec2-13-58-7-162.us-east-2.compute.amazonaws.com
+
+Agora estamos acessando a primeira máquina da AWS. Agora, na primeira máquina da AWS faremos o seguinte comando:
+
+ssh ec2-user@172.31.28.109
+
+Não conseguimos. Mas você deve estar pensando que faltou alguma coisa. O que está acontecendo?
+
+Vejamos o que já temos: o grupo de segurança está lá, estamos liberados para acessar e o agente ssh está liberado
+também. Mas por quê não estamos conseguindo?
+
+Vamos interromper e voltar a uma explicação que dei no vídeo anterior sobre grupos de segurança. Falei que o grupo de
+segurança é stateful, então a todo tráfego que entra é permitido voltar também. Já quando trabalhamos com ACL não é
+assim.
+
+Então, a conexão de SSH está indo, a segunda máquina está aceitando a conexão, mas não está podendo devolver nada. Então
+ela não responde com sucesso e a conexão não é feita.
+
+Para corrigir isso, vamos voltar na nossa ACL e configurar também as regras de saída. Vamos clicar na aba "Regras de
+saída" e, em seguida, em "Editar regras de saída > Adicionar nova regra". Vamos preencher os campos da seguinte maneira:
+
+    Número da regra: 1
+
+    Tipo: Todo o tráfego
+
+    Protocolo: Tudo
+
+    Intervalo de portas: Tudo
+
+    Destino: 172.31.0.0/20
+
+    Permitir/negar: Permitir
+
+Assim vamos permitir todo o tráfego desde que seja para 172.31.0.0/20. Ou seja, permito a entrada de todo tráfego vindo
+da primeira sub-rede e permito toda a saída de tráfego para a primeira sub-rede. Vamos clicar em "Salvar alterações".
+
+Agora, no terminal, podemos interromper o comando anterior. E, de novo, a partir da primeira máquina vamos tentar
+acessar a segunda máquina.
+
+ssh ec2-user@172.31.28.109
+
+Agora, sim, funcionou corretamente. Note que eu tive uma permissão negada por causa da chave pública. Então, só o
+comando para adicionar o agente não funcionou porque eu não anexei a chave "aws-ohio.pem" ao agent. Isso são detalhes de
+SSH. Mas, basicamente, o que aconteceu foi que liberei acesso à minha sub-rede B somente a partir da sub-rede A.
+
+E liberei também o acesso de volta, porque a ACL é stateless. ACLs só permitem a entrada ou só permitem a saída. Se
+queremos que o pacote vá e volte é preciso adicionar duas regras, uma para entrada e uma para saída.
+
+Note que o padrão é negar tudo, por isso tem aquela regra padrão no final de negar todo o tráfego. Então, é preciso
+adicionar tudo o que quisermos permitir.
+
+No próximo vídeo entenderemos as diferenças entre grupos de segurança e ACLs.

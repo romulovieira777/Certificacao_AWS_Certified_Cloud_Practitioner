@@ -1,0 +1,8 @@
+Nessa aula, nós:
+
+    - Implementamos security groups e entendemos melhor o seu funcionamento, partindo da premissa deles serem stateful e
+    só suportarem regras de permissão e não de bloqueio;
+    - Criamos ACLs e percebemos que elas nos permitem regras mais granulares tanto de bloqueio quanto de permissão, além
+    de entendermos que elas são stateless;
+    - Desenvolvemos acessos limitados em nossas instâncias a partir de ACLs e security groups, entendendo melhor suas
+    especificidades e como utilizá-los em conjunto para realizar essas limitações.

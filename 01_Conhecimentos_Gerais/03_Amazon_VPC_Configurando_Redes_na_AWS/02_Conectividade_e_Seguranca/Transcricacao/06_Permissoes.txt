@@ -1,0 +1,18 @@
+Cláudio está configurando duas sub-redes utilizando o serviço de VPC da AWS, a sub-rede A e a B.
+
+A sub-rede A contém instâncias que possuem informações sigilosas, por isso ele quer limitar o acesso a ela. Além disso,
+qualquer instância da sub-rede B deve acessar a sub-rede A, com exceção de uma instância que não é tão segura, pois
+possui acesso liberado.
+
+Em relação às ferramentas que Cláudio pode utilizar para configurar o acesso à sub-rede A, marque as opções corretas:
+
+É possível realizar essa configuração unindo ALCs e Security Groups.
+    R: Você pode adicionar às instâncias da sub-rede “protegida” um security group que libera todo o acesso vindo da
+    outra sub-rede, e criar uma ACL que bloqueia apenas o acesso vindo do IP específico da instância que não é tão
+    segura.
+
+É possível realizar essa configuração com ACLs.
+    R: É perfeitamente possível realizar essa configuração com ACLs. Basta bloquear o acesso vindo do IP da instância
+    que não é tão segura, liberar o acesso vindo da sub-rede e bloquear o restante dos acessos.
+
+É possível realizar essa configuração apenas com security groups.

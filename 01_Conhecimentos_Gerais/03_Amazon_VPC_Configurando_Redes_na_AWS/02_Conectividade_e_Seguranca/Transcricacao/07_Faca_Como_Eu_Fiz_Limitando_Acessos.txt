@@ -1,0 +1,51 @@
+Nessa aula você aprendeu mais sobre a parte de segurança da infraestrutura da AWS. Chegou a hora de colocar em prática
+seus conhecimentos de segurança em AWS VPC.
+
+Vamos lá?
+
+VER OPINIÃO DO INSTRUTOR
+
+Opinião do instrutor
+
+Para começar a praticar, siga os seguintes passos:
+
+1) No console da AWS, acesse a área de VPC;
+
+2) Em segurança, acione a opção “Grupos de segurança”;
+
+3) Depois, acesse a opção “Criar grupo de segurança”;
+
+4) Crie um novo grupo de segurança chamado ssh que permita a entrada de conexões SSH vindas de seu IP;
+
+5) Na área de EC2,crie uma instância em uma sub-rede da VPC padrão que seja diferente da sub-rede utilizada para criação
+da instância da aula anterior;
+
+6) Adicione essa nova instância apenas a um novo grupo de segurança vazio (sem nenhuma regra de entrada nem de saída);
+
+7) Tente se conectar via ssh à primeira instância criada (na aula anterior). Esse processo deve falhar;
+
+8) Adicione a essa instância o grupo de segurança ssh criado nesta aula;
+
+9) Tente novamente se conectar via ssh. Agora a conexão deve ser bem sucedida;
+
+10) A partir da primeira instância, tente executar o comando ping passando o IP privado da segunda instância. Nenhuma
+resposta deve ser retornada;
+
+11) Adicione também à segunda instância o grupo de segurança chamado default;
+
+12) Tente realizar o ping novamente. Agora deve funcionar corretamente;
+
+13) Adicione também à segunda instância o grupo de segurança ssh;
+
+14) Na área de VPC, crie uma nova ACL;
+
+15) Nessa ACL, adicione uma regra de entrada com o número 1, permitindo todo o tráfego vindo da sub-rede em que se
+encontra a primeira instância criada;
+
+16) Adicione também uma regra de saída permitindo todo o tráfego para a sub-rede em que se encontra a primeira instância;
+
+17) Associe essa ACL à sub-rede onde se encontra a segunda instância criada;
+
+18) Acesse via SSH a primeira instância e tente se conectar (via SSH) à segunda instância. Tudo deve funcionar;
+
+19) Agora diretamente da sua máquina local, tente acessar (via SSH) a segunda instância. Você não deve conseguir.

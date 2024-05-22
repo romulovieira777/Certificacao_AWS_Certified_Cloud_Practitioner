@@ -1,0 +1,104 @@
+Agora vamos criar duas instâncias, uma em cada sub-rede. Como já estudamos isso nos cursos anteriores, vou fazer mais
+rapidamente.
+
+Vamos acessar o painel da EC2 e clicar em "Instâncias". Na verdade, vou permitir o uso da primeira-maquina e vou criar
+só mais uma.
+
+A instância primeira-maquina está na zona de disponibilidade us-east-2a. Então vamos criar uma nova instância na zona de
+disponibilidade us-east-2b, ou seja, em outra sub-rede.
+
+Vamos clicar em "Executar instâncias" e começar a preencher os campos para criação de uma nova instância. O nome dela
+será segunda-maquina, a imagem será a da Amazon Linux mesmo, tipo de instância será t.2.micro, par de chaves será
+aws-ohio.
+
+No campo de configurações de rede, clicaremos em "Editar" e informaremos que vamos adicioná-lo na sub-rede B,
+us-east-2b. Vamos selecionar a opção que tem a zona de disponibilidade: us-east-2b.
+
+Vamos manter a opção "Criar grupo de segurança". E como não queremos adicionar nenhuma regra nesse grupo, na seção
+"Regras do grupo de segurança de entrada" vamos clicar em "Remover". Então nomearemos esse grupo como "grupo-vazio". Só
+para criar um novo grupo de segurança específico para essa máquina caso seja preciso ter algo específico. Mas, por
+enquanto, vamos deixar vazio.
+
+Em seguida, podemos clicar em "Executar instância".
+
+Agora, voltaremos para a lista de instâncias e vamos tentar acessar a primeira-maquina. Sabemos que não será possível,
+mas vou tentar mesmo assim para ver o que acontece.
+
+Após selecionar a instância primeira-maquina, clicaremos em "Ações > Conectar". Na aba "Cliente SSH" vamos copiar o
+comando que precisamos:
+
+ssh -i "aws-ohio.pem" ec2-user@ec2-13-58-7-162.us-east-2compute.amazonaws.com
+
+Em seguida, abriremos o terminal. E, na pasta .ssh já temos a chave aws-ohio-pem que colocamos com a permissão 400, para
+ela estar com as permissões corretas.
+
+Podemos colar aquele comando que copiamos da aba "Cliente SSH" e ao tentarmos nos conectar, não vamos conseguir.
+
+Isso acontece porque ainda não temos o grupo de segurança que permite acesso SSH.
+
+Para corrigir isso, vamos voltar para a instância primeira-maquina e clicar em "Ações > Segurança > Alterar grupos de
+segurança". Na seção de grupos de segurança associados, podemos adicionar o grupo de segurança SSH.
+
+Agora, vamos voltar ao terminal, cancelar o comando anterior e executar novamente o mesmo comando.
+
+ssh -i "aws-ohio.pem" ec2-user@ec2-13-58-7-162.us-east-2compute.amazonaws.com
+
+Agora, sim. Conseguimos a conexão.
+
+Já podemos pegar o IP da segunda máquina.
+
+Voltaremos para a lista de instâncias, vamos selecionar a instância segunda-maquina e localizar o endereço IPv4 privado.
+
+172.31.28.109
+
+Vamos copiar e voltar ao terminal para tentar fazer um PING para essa instância.
+
+ping 172.31.28.109
+
+Note que o PING foi enviado, mas não estou conseguindo acessar aquela máquina ou receber a resposta. Você já deve saber
+o motivo. Não tem nenhum grupo de segurança lá, não consigo fazer o acesso.
+
+Então, vamos cancelar esse comando no terminal e voltar para o console AWS.
+
+Na instância segunda-maquina, clicaremos em "Ações > Segurança > Alterar grupos de segurança". Vamos adicionar o grupo
+de segurança padrão, o default, na seção de grupos de segurança associados.
+
+Com isso, todos que estiverem no grupo de segurança default (sg-082714481a7d8045b) conseguirão fazer todos os acessos.
+
+Podemos salvar essa alteração.
+
+Se analisarmos as regras desse grupo de segurança default, ele permite o acesso liberado em qualquer porta e utilizando
+qualquer protocolo desde que seja vindo de uma origem que está nesse grupo de segurança também.
+
+Agora, que as duas instâncias estão no mesmo grupo de segurança, podemos tentar fazer o PING.
+
+ping 172.31.28.109
+
+Agora funcionou corretamente. Mesmo estando em sub-redes diferentes, eles estão acessíveis.
+
+Mas eu já disse que existe uma outra ferramenta que nos permite uma maior granularidade de informações na nossa rede.
+
+Então, utilizando essa outra ferramenta, quero permitir acesso à minha segunda instância somente a partir da primeira
+instância.
+
+Vamos limpar a tela e sair da instância.
+
+exit
+
+De volta à AWS, vamos alterar grupos de segurança da segunda-maquina e adicionar o SSH no "grupos de segurança
+associados" e clicar em "Adicionar grupo de segurança". Ou seja, permito acesso SSH à minha máquina.
+
+Em seguida, nos detalhes da segunda-maquina, vamos clicar em "Ações > Conectar" e copiar o comando do exemplo:
+
+ssh -i "aws-ohio.pem" ec2-user@ec2-13-58-82-28.us-east-2compute.amazonaws.com
+
+Podemos colar esse comando no terminal e ver se conseguimos conexão com essa instância.
+
+Conseguimos conexão.
+
+O que estamos fazendo aqui? Temos acesso via SSH tanto à primeira instância quanto à segunda instância. Agora, na
+segunda instância, quero permitir acesso somente a partir da primeira instância. Ou seja, bloquear todo acesso a ela e
+liberar somente acesso vindo da primeira instância.
+
+Então teremos regras como fazemos no firewall mesmo. Pegando o IP e bloqueando ou permitindo o IP. Vamos fazer isso com
+um serviço chamado ACL.
