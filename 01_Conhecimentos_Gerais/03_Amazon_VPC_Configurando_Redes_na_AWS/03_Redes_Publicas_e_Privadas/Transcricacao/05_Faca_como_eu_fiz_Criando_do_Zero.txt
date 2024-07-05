@@ -1,0 +1,37 @@
+Nessa aula você aprendeu a criar uma sub-rede pública e outra privada em uma VPC nova, configurada do zero. Chegou a
+hora de colocar em prática seus conhecimentos em AWS VPC.
+
+Vamos lá?
+
+Opinião do instrutor
+
+Para começar a praticar, siga os seguintes passos:
+
+1) No Painel da VPC, inicie a criação de uma nova VPC;
+
+2) Crie uma VPC com apenas uma zona de disponibilidade, tendo uma sub-rede pública e uma privada (sem NAT Gateway e sem
+VPC Endpoints);
+
+3) Crie duas instâncias EC2 na VPC: uma na sub-rede pública e outra na sub-rede privada. Para isso:
+
+    a) À instância criada na sub-rede pública, atribua um IP público automaticamente;
+    b) Adicione um grupo de segurança vazio às duas instâncias.
+
+4) Após criar ambas instâncias, crie um novo grupo de segurança em nossa VPC para liberar o acesso SSH vindo de qualquer
+origem;
+
+5) Adicione esse novo grupo de segurança à instância da sub-rede pública;
+
+6) Acesse via SSH a instância da sub-rede pública. Tudo deve funcionar;
+
+7) Crie um novo grupo de segurança que permita o acesso SSH. A origem desse acesso precisa ser o IP privado da que está
+na sub-rede pública;
+
+8) Adicione esse novo grupo de segurança à instância da sub-rede privada;
+
+9) Em sua máquina local, usando o comando ssh-add, adicione sua chave SSH usada para se conectar às instâncias;
+
+10) Acesse sua instância da sub-rede pública com ssh -A. Faça isso para encaminhar o agente SSH com a chave adicionada;
+
+11) A partir da instância da sub-rede pública, acesse via SSH a instância da sub-rede privada. Isso também deve
+funcionar.

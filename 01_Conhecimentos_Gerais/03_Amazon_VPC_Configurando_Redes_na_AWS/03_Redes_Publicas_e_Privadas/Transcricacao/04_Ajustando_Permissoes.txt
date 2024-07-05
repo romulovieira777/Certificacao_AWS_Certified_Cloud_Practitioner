@@ -1,0 +1,49 @@
+Neste vídeo, vamos criar um grupo de segurança na nossa VPC. Ele permitirá o acesso somente vindo de "maquina-web".
+
+Novo grupo de segurança
+Na listagem de instâncias, vamos clicar no ID de "maquina-web" e copiar o endereço IPv4 privado. No meu caso, é
+10.0.12.136.
+
+No menu à esquerda, acessaremos "Rede e segurança > Security groups" e clicar no botão "Criar grupo de segurança", no
+canto superior direito:
+
+    - Nome: ssh-web-bd
+    - Descrição: ssh-web-bd
+    - VPC: infra-vpc
+
+Na seção "Regras de entrada", clicaremos no botão "Adicionar regra" e inserir a seguinte regra:
+
+    - Tipo: SSH
+    - Protocolo: TCP
+    - Intervalo de portas: 22
+    - Tipo de origem: Personalizado
+    - Origem: 10.0.12.136/32
+
+No campo "Origem", definimos um CIDR, que é o IP da "maquina-web" com a máscara. Dessa forma, estamos permitindo acesso
+de "maquina-web" para "maquina-bd". Ou seja, podemos ter regras comuns mais restritas, o que aumenta a segurança.
+
+Na seção "Regras de saída", como não temos acesso à internet, vamos remover a regra. Basta clicar no botão "Excluir" no
+canto superior direito dessa seção.
+
+Ao final da página, clicaremos no botão "Criar grupo". Uma vez criado, vamos voltar à listagem de instâncias e clicar no
+ID de "maquina-bd". Depois, selecionares "Ações > Segurança > Alterar grupos de segurança".
+
+No campo de adição, selecionaremos "ssh-web-bd" e clicaremos no botão "Adicionar grupo de segurança" à direita. Logo
+abaixo, temos a lista de grupos de segurança associados à interface de rede, onde consta "vazio" e "ssh-web-bd". No
+canto inferior direito, clicaremos em "Salvar".
+
+Acesso
+No terminal, conectados à "maquina-web", vamos tentar acessar a máquina de banco de dados:
+
+    - ssh ec2-user@10.0.130.4
+
+Em seguida, digitaremos "yes" e conseguiremos acessar a máquina! Assim, primeiro temos o IP da máquina web (10.0.12.136)
+e depois temos o IP da máquina de banco de dados (10.0.130.4). Ou seja, a partir de "maquina-web" conseguimos acessar a
+"maquina-bd".
+
+Vale lembrar que não é possível acessar a máquina de banco de dados a partir da internet. É preciso entrar na rede de
+alguma forma e somente a partir da máquina web conseguiremos fazer um SSH para a máquina de banco de dados.
+
+Estudamos bastante sobre a parte de infraestrutura, segurança, limitação de acesso, redes públicas e privadas. Também
+comentamos rapidamente sobre NAT, internet gateway e tabelas de roteamento. Nas próximas aulas, vamos nos aprofundar
+nesses conceitos de roteamento e redes na AWS!

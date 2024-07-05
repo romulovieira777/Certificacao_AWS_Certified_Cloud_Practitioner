@@ -1,0 +1,9 @@
+Nessa aula, nós:
+
+    - Criamos nossa primeira VPC partindo do zero. Com isso nós também criamos mais de uma sub-rede;
+
+    - Criamos uma sub-rede privada, ou seja, uma sub-rede que não é acessível pela internet. Ela só é acessível dentro
+      da própria VPC;
+
+    - Tornamos possível o acesso a uma instância EC2 partindo apenas de outra instância EC2 específica, mantendo tanto a
+      segurança da rede quanto das instâncias.

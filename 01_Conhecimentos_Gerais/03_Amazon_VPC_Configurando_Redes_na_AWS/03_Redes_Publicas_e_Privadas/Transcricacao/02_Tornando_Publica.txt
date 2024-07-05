@@ -1,0 +1,21 @@
+Alice criou uma infraestrutura na AWS contendo uma VPC com uma sub-rede pública e uma sub-rede privada. Essa era a
+necessidade no momento da criação, para limitar o acesso externo a uma das sub-redes. Com o passar do tempo, essa
+necessidade mudou. Agora sua sub-rede, que originalmente era privada, precisa passar a ser pública e ser acessível via
+internet.
+
+O que Alice precisa fazer para que uma sub-rede que originalmente era privada se torne pública?
+
+Adicionar a ela um NAT Gateway.
+    Um NAT Gateway permite que a sub-rede privada possa acessar a internet, mas não permite o contrário. A sub-rede
+    continua privada, visto que partindo da internet não é possível acessá-la.
+
+
+Adicionar a ela um Internet Gateway. -> Alternativa correta
+    O Internet Gateway é o serviço da AWS que libera o acesso vindo da internet para alguma sub-rede de uma VPC. Se, na
+    tabela de rotas da sub-rede privada, nós configurarmos a ligação para um Internet Gateway, essa sub-rede se tornará
+    pública. Nós vamos fazer isso na prática durante o curso. 😃
+
+
+Não é possível tornar pública uma sub-rede privada.
+    Na verdade, é possível tornar pública uma sub-rede que foi criada como privada. Existe um serviço da AWS que resolve
+    esse problema, basta adicioná-lo à tabela de rotas dessa sub-rede.
