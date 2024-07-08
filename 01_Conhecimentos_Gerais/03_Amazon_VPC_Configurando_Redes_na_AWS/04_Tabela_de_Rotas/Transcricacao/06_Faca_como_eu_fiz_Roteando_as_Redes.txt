@@ -1,0 +1,35 @@
+Nessa aula você aprendeu sobre os diferentes Gateways que podemos configurar na VPC, além de conhecer a tabela de rotas.
+Chegou a hora de colocar em prática seus conhecimentos.
+
+Vamos lá?
+
+
+Opinião do instrutor
+
+Para começar a praticar, siga os seguintes passos:
+
+1) Aloque um IP elástico à instância EC2 que está na sub-rede privada;
+
+2) Libere todo o acesso à essa instância através de um novo grupo de segurança;
+
+3) Tente se conectar via SSH, a partir de sua máquina, a essa instância na sub-rede privada, usando o novo IP elástico (
+que é público);
+
+4) Esse acesso deve falhar, visto que a sub-rede é privada;
+
+5) Crie uma nova rota de sua sub-rede privada para o Internet Gateway;
+
+6) Agora, o acesso SSH de sua máquina para a instância na sub-rede que era privada deve ser possível;
+
+7) Remova essa rota para o Internet Gateway, tornando a sub-rede privada novamente;
+
+8) Acesse sua instância EC2 da sub-rede pública;
+
+9) Nela, execute o comando sudo tcptraceroute s3.us-east-2.amazonaws.com 80 para conferir os saltos de rede entre a
+instância e o serviço AWS S3;
+
+10) Crie em nossa VPC um VPC Endpoint do tipo Gateway para S3;
+
+11) Adicione esse endpoint a todas as tabelas de rota de nossa VPC;
+
+12) Execute novamente o comando do passo 9. Não devem haver mais saltos entre a instância e o serviço S3.

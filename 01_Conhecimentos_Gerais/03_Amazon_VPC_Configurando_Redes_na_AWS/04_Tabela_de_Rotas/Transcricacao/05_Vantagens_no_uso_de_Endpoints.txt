@@ -1,0 +1,20 @@
+Nesse vídeo nós aprendemos sobre VPC Endpoints e entendemos que eles criam uma espécie de ligação direta entre nossa VPC
+e algum serviço da Amazon (como o S3, por exemplo). Com essa ligação direta, ao acessar o serviço configurado, nós não
+precisamos passar pela internet.
+
+Quais as vantagens de configurar um VPC Endpoint em nossa infraestrutura de redes da AWS?
+
+
+A) Economia por não haver cobranças por acessos ao serviço configurado. -> Alternativa correta.
+    R: Se nós utilizarmos NAT Gateways, por exemplo, o tráfego que passa por ele é cobrado. Sendo assim, acessar um
+       serviço da AWS através de uma sub-rede privada pode gerar custos. Se nós criamos um VPC Endpoint, esse acesso não
+       passa pelo NAT Gateway, economizando dinheiro.
+
+
+B) Facilidade de acesso de nossa aplicação ao serviço configurado. -> Alternativa incorreta.
+    R: A facilidade de acesso é uma vantagem, mas não é a única. A economia de custos é um fator importante.
+
+
+C) Melhora da performance ao acessar o serviço configurado. -> Alternativa correta.
+    R: Já que para acessar o serviço configurado nós não precisamos ir até a internet e voltar, esse acesso tende a ser
+       mais rápido, já que é um acesso dentro da própria infraestrutura da AWS.

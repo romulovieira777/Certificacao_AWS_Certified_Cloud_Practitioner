@@ -1,0 +1,138 @@
+Configuraremos redes dentro da AWS graças ao VPC, o serviço de Virtual Private Cloud (ou Nuvem Privada Virtual).
+
+Vamos entender um detalhe que impacta a criação da nossa VPC: quando a criamos, temos uma sub-rede pública e uma
+privada. A principal diferença entre elas são as conexões de rede.
+
+Para a rede pública, é realizada a conexão entre a sub-rede e um Internet Gateway, que consiste em um portão que se abre
+para acessarmos a sub-rede a partir da internet. Com isso, temos uma ligação do mundo externo com a nossa sub-rede. Para
+realizar essa operação, precisaremos de um IP público, contudo podemos utilizar a Amazon em seu lugar.
+
+Por este motivo, não conseguimos acessar nossa sub-rede privada de fora da internet. Vamos colocar este fato à prova.
+
+Acessaremos a AWS. No campo de pesquisa intitulado "Search" da barra superior digitaremos "EC2". Serão exibidos uma
+lista de menus à esquerda com o menu "Services" selecionado, e à direita uma lista com quatro opções clicáveis,
+disponíveis dentro do "Services".
+
+Dentre as quatro opções, selecionaremos "EC2", abrindo-a em outra aba. O painel do EC2 será aberto, onde acessaremos o
+explorador lateral esquerdo e buscaremos o menu "Rede e segurança". Dentro dele, selecionaremos a opção "IPs elásticos".
+
+No corpo da página, selecionaremos o botão "Alocar endereço IP elástico", localizado abaixo da barra de ferramentas
+superior.
+
+Seremos direcionados para uma nova página, onde alocaremos o IP elástico. Manteremos todas as opções como padrão e
+clicaremos no botão "Alocar". Isso criará um novo IP público e nos redirecionará para a página anterior.
+
+Nela, acessaremos a lista no centro da página e selecionaremos o checkbox que corresponde ao nosso endereço IP. Em
+seguida acessaremos o botão de lista suspensa "Ações", no qual selecionaremos "Associar endereço IP elástico".
+
+Seremos direcionados para uma nova página, onde manteremos a opção "Instância" selecionada. Na campo editável de busca
+que possui o título "Instância", selecionaremos o ID da nossa maquina-bd que se encontra em uma sub-rede privada:
+
+    i-0320e2c836d0bd4ae (maquina-bd) - running
+
+Clicaremos no botão "Associar". Com isso, vamos atribuir um IP público à nossa instância que está dentro de uma rede
+privada. Seremos redirecionados à página anterior, cujo topo exibirá um pop-up na cor verde com a mensagem "Endereço IP
+elástico associado com êxito."
+
+No explorador lateral esquerdo, dentro do menu "Instâncias", selecionaremos a opção "Instâncias". Uma nova tela será
+aberta no corpo da página. Nela, iremos até a coluna "ID da instância", dentro da qual selecionaremos o ID da nossa
+maquina-bd.
+
+Na nova página aberta, veremos uma seção denominada "Endereço IPv4 público", onde temos nosso endereço IPv4 marcado.
+Acima desta seção, à esquerda, clicaremos no botão "Conectar".
+
+Seremos direcionados para uma nova página, onde acessaremos o menu "Cliente SSH". Em seu interior, veremos a nossa DNS.
+
+    chmod 400 aws-ohio.pem
+
+Abaixo dela, temos o comando de conexão abaixo, o qual iremos copiar.
+
+    ssh -i "aws-ohio.pem" ec2-user@ec1-3-14-95-226.us-east-2.compute.amazonaws.com
+
+Acessaremos o nosso terminal, onde colaremos o comando copiado e pressionaremos "Enter". Neste momento, tentaremos nos
+conectar mas nada acontece. Você deve estar pensando "Vinicius, você não atribuiu o grupo de segurança!" Verdade,
+portanto interromperemos o comando no terminal com "Ctrl+C".
+
+Voltaremos à página do EC2. No topo, há o caminho de menus que seguimos para chegar na página atual: "EC2 > Instâncias >
+i-0320e2c836d0bd4ae > Conectar-se à instância". Vamos clicar em "i-0320e2c836d0bd4ae" para voltar à página com as
+configurações da instância.
+
+Nela, selecionaremos o botão de lista suspensa "Ações", no qual selecionaremos "Segurança > Alterar grupos de
+segurança". Seremos direcionados a página da seção "Grupos de segurança associados". Nela, acessaremos o campo de busca
+denominado "Selecionar grupos de segurança", onde digitaremos o SSH público para atribuí-lo.
+
+    sg-091fd5538fbf6022a
+
+É possível encontrá-lo digitando "ss" e selecionando a opção "ssh-publico ( sg-091fd5538fbf6022a )" na lista suspensa
+que será aberta abaixo do campo.
+
+Este grupo de segurança permite o acesso de todo mundo através de SSH. Agora que o atribuímos, voltaremos para o
+terminal para executar aquele mesmo comando de conexão.
+
+Ainda não conseguimos conectar a esta instância a partir da nossa rede pessoal, mesmo ela tendo um IP público. Isso
+ocorre pois ela se encontra em uma rede privada. A diferença entre sub-redes privadas e públicas é que esta última
+possui uma configuração de rotas vinda de um Internet Gateway.
+
+Por meio do terminal, acessaremos nossa instância a partir da nossa máquina web, adicionando novamente a chave e
+pressionando "Enter".
+
+    ssh-add ./aws-ohio.pem
+
+Voltando à página do EC2, faremos um SSH para a nossa máquina web. Para isso, acessaremos o caminho de menus no topo da
+página: "EC2 > Instâncias > i-0320e2c836d0bd4ae", onde clicaremos em "Instâncias" para retornar à página de instâncias.
+Na coluna "ID de instância", clicaremos no ID da maquina-web.
+
+No topo da nova página, clicaremos em "Conectar" e iremos para outra página. Nela, copiaremos o comando de conexão.
+
+ssh -i "aws-ohio.pem" ec2-user@ec2-18-224-179-96.us-east-2.compute.amazonaws.comCOPIAR CÓDIGO
+Voltaremos ao terminal e colaremos este comando. Entre ssh e -i adicionaremos um -A com A maiúsculo. Deletaremos também
+a chave -i "aws-ohio.pem" pois ela já foi adicionada no nosso ssh.
+
+    ssh -A ec2-user@ec2-18-224-179-96.us-east-2.compute.amazonaws.com
+
+Por fim, daremos “Enter” e nos conectaremos à máquina web.
+
+    https://aws.amazon.com/amazon-linux-2/[ec2-user@ip-10-0-12-136 ~]$
+
+A partir dela, nos conectaremos à máquina de banco de dados.
+
+Voltando à página da EC2, na seção "Instâncias", clicaremos no ID da maquina-bd e na página "Resumo da instância para
+i-0320e2c836d0bd4ae" veremos à direita a subseção "Endereços IPv4 privados". Nela copiaremos o IP privado da máquina web:
+
+    10.0.130.4
+
+Voltaremos ao terminal e digitaremos ssh ec2-user@ seguido pelo ID copiado. O resultado será o comando abaixo.
+
+    ssh ec2-user@10.0.130.4
+
+Daremos "Enter" e faremos o SSH para a máquina web, que será concluído com sucesso. Se tentarmos executar um sudo yum
+update, ele tentará carregar as configurações de internet, mas não conseguirá acessar a internet propriamente dita, pois
+não possui o Internet Gateway.
+
+    sudo yum update
+
+Se adicionarmos o Internet Gateway na nossa sub-rede privada, ela não será mais privada, já que estamos permitindo a
+entrada de dados. É aí que entra o NAT.
+
+Resumindo
+
+Se configuramos a rota de um Internet Gateway com a nossa sub-rede, ela se torna pública. Se precisamos que nossa
+sub-rede privada tenha acesso à internet, utilizamos o NAT Gateway, do qual já falamos anteriormente.
+
+Reforçando: O motivo de não termos configurado um NAT Gateway é porque ele é pago. Ele possui um limite para uso
+gratuito, mas preferimos não correr o risco de ultrapassar esse limite e sermos cobrados. Por isso, não temos a conexão
+da nossa máquina com o mundo externo.
+
+Em um cenário real, na criação da VPC nós já definiríamos a utilização de um NAT Gateway. Contudo, é possível definir os
+gateways por meio do painel da VTC, localizado na página da AWS.
+
+Nele encontramos links para vários serviços. Um deles é o “Gateways NAT”. Clicando nesta opção, poderíamos selecionar o
+botão "Criar gateway NAT" e criar um gateway, o qual posteriormente adicionaríamos a alguma sub-rede, adicionando-a no
+campo intitulado "Sub-rede".
+
+Este processo é bastante simples: adicionaríamos um IP elástico ao nosso NAT Gateway enquanto a própria AWS faria todo o
+roteamento — portanto, não precisaríamos nos preocupar com isso.
+
+Conforme abordado anteriormente, se adicionamos algum tipo de roteamento ou conexão entre a minha rede e um Internet
+Gateway, ela se torna pública. No próximo vídeo faremos este processo, tornando a nossa rede, antes privada, em uma rede
+pública.

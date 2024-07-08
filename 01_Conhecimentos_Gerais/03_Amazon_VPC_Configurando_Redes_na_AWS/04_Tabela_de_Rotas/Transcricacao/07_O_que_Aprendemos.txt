@@ -1,0 +1,14 @@
+Nessa aula, nós:
+
+    - Entendemos a diferença entre um Internet Gateway e um NAT Gateway, ficando claro que o primeiro permite o acesso
+      da internet até nossa sub-rede e vice-versa, enquanto o segundo apenas permite o acesso da sub-rede até a
+      internet;
+
+    - Implementamos as tabelas de rotas da AWS VPC, que permitem que façamos roteamentos de um endereço (ou vários) para
+      outro;
+
+    - Configuramos uma nova tabela de rotas para tornar pública a nossa sub-rede que era originalmente privada. Essa
+      tabela de rotas possui uma regra que manda o tráfego para um Internet Gateway;
+
+    - Criamos um VPC Endpoint que liga diretamente nossa VPC a alguns serviços da AWS, podendo nos fornecer maior
+      performance e redução de custos.

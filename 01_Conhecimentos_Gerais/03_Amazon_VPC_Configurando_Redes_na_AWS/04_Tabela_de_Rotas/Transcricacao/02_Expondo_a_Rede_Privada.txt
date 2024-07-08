@@ -1,0 +1,195 @@
+Falamos um pouco sobre Internet Gateway e NAT Gateway para entender as diferenças entre eles.
+
+    Observação: No final deste vídeo aprenderemos a definir um gateway NAT, mesmo com a possibilidade de ter custos
+    financeiros.
+
+Queremos tornar pública a nossa rede privada. Queremos criar uma rota da sub-rede para o Internet Gateway sempre que
+tentarmos realizar algum processo.
+
+Começaremos buscando o link "Gateways da Internet", na página do Painel da VPC. Clicando nele, iremos para a página de
+mesmo nome, onde veremos dois gateways: um da nossa VPC padrão e abaixo dele outro da "infra-igw" que criamos, onde
+"ig" significa internet gateway.
+
+Nesse "infra-igw", estamos conectados à nossa sub-rede pública até este ponto. Na tela, temos uma coluna exibindo o ID
+da VPC.
+
+Não temos muitas informações para analisar. Se clicarmos no ID localizado na coluna "ID do gateway da internet", iremos
+para uma página que exibe, a seção "Detalhes", e abaixo dela a seção "Tags", onde temos um campo de busca denominado
+"Pesquisar tags".
+
+Não existem muitas configurações para fazermos neste cenário: o IP será definido em outro lugar. O local em que estamos
+abre as portas da internet para nós e as portas da sub-rede para a internet.
+
+É possível observar como realizar a ligação entre a sub-rede e o Internet Gateway. Isso é feito através de uma tabela de
+rotas. Vamos acessá-la por meio do explorador lateral. Dentro do menu "Nuvem privada virtual", clicaremos no submenu
+"Tabela de rotas".
+
+Como funciona uma tabela de rotas? Se trata de uma lista de regras solicitando que, se determinado endereço for
+acessado, haverá um redirecionamento para determinado lugar.
+
+Configuraremos os acessos para serem redirecionados ao Internet Gateway, pois a partir da internet ele encontrará o seu
+caminho.
+
+Na tela que acabamos de abrir, veremos uma tabela de rotas com a nossas redes. Entre elas, encontramos a nossa rede
+pública: infra-rtb-public, onde rtb significa route table.
+
+Dica: Os nomes são bastante importantes para identificar a função de cada elemento.
+
+Se clicarmos no ID da infra-rtb-public, seremos direcionados para uma nova página onde temos as seções "Detalhes" e
+"Rotas". Acessando esta última, veremos a coluna "Destino", alinhada à esquerda.
+
+Ao tentar acessar qualquer coisa na minha própria rede, o alvo é local, ou seja, não seremos redirecionados. Podemos ver
+o alvo na coluna "Alvo", à direita de "Destino". No caso do destino "10.0.0.0/16", o alvo "local" é exibido.
+
+Contudo, se tentarmos acessar qualquer outra coisa, iremos para o gateway. Para o destino "0.0.0.0/0", o alvo
+"igw-03fdb4648007bee2d" é exibido.
+
+Adicionaremos a nova rota 0.0.0.0/0 à tabela de rotas da rede privada. Podemos fazer isso de duas formas.
+
+Adicionando uma rota
+
+Voltando à página da tabela de rotas, clicaremos no ID rtb-03ec942ea30ce21bf referente à rede privada
+infra-rtb-private1-us-east-2c.
+
+Na nova página, desceremos até a seção "Rotas" e clicaremos no botão "Editar rotas", alinhado à direita no nome da
+seção. Em seguida, clicaremos no botão "Adicionar rota", no canto inferior, alinhado à esquerda.
+
+Contudo não seguiremos este método, pois criaremos uma nova tabela para fins de prática.
+
+Criando uma nova tabela de rotas
+Voltando à página da tabela de rotas, clicaremos no botão "Criar tabela de rotas", localizado no canto direito e acima
+da tabela de rotas existente. Seremos redirecionados para a página da seção "Criar tabela de rotas".
+
+Abaixo deste título há a seção "Configurações da tabela de rotas", onde encontramos um campo editável. Nele escreveremos
+o nome da tabela:
+
+    minha-tabela-de-rota-privada-para-igw
+
+Abaixo deste campo, há a seção "VPC" com um botão de lista suspensa, no qual selecionaremos a opção que representa a
+rede que criamos e com a qual estamos trabalhando — a infra-vpc.
+
+
+vpc-0615fc55438a59826 (infra-vpc)
+
+Abaixo da seção "Configurações da tabela de rotas", temos outra intitulada "Tags", na qual podemos adicionar tags ou
+não. Neste caso, vamos pular essa parte.
+
+Abaixo de "Tags", por sua vez, temos o botão "Criar tabela de rotas". Clicaremos nele, criando assim a nova tabela. Em
+seguida, seremos direcionados de volta à página da tabela de rotas.
+
+Na seção "Rotas" podemos editar as rotas, clicando no botão "Editar rotas", alinhado à direita. Na página "Editar
+rotas", clicaremos no botão "Adicionar rota". Neste momento, surgirão os campos editáveis "Destino" e "Alvo".
+
+No campo "Destino", adicionaremos a rota "0.0.0.0/0". Em "Alvo", escolheremos a opção "Gateway da Internet" selecionando
+em seguida a única rede dessa VPC, e portanto, aquela que será utilizada: "igw-03fdb4648007bee2d". Clicaremos no botão
+de salvar alterações e pronto.
+
+Desta forma, ao tentar acessar qualquer coisa, vamos mandar este acesso ao Gateway da Internet.
+
+Ainda nas configurações da tabela de rotas atual, clicaremos no submenu "Associações de sub-rede", localizado entre as
+seções "Detalhes" e "Rotas".
+
+Repare que esta tabela de rotas não está associada à nenhuma sub-rede — nós a criamos na VPC, mas ainda não a estamos
+utilizando.
+
+Na seção "Associações de sub-rede", clicaremos em "Editar associações de sub-rede" e clicaremos no checkbox da nossa
+sub-rede privada, adicionando-a à nossa tabela.
+
+Se lembrarmos do desenho da criação de VPC, veremos que adicionamos uma ligação, ou uma linha, entre a minha sub-rede
+privada e o Internet Gateway. Dessa maneira, a nossa sub-rede privada passa a ser pública também.
+
+Vamos testar duas coisas: primeiro, acessaremos o terminal que está conectado à sub-rede privada. Nele, tentaremos
+realizar um ping para o google.
+
+    ping google.com
+
+Veremos que já estará funcionando, pois o ping será efetuado com sucesso.
+
+Vamos cancelar este processo e inserir o comando que rodamos mais cedo:
+
+    sudo yum update
+
+Ele também funcionará e buscará os detalhes, nos mostrando que não há nenhum pacote para atualizar.
+
+Digitaremos exit e daremos "Enter" para sair da sub-rede privada, voltando assim para a maquina-web.
+
+    exit
+
+Daremos outro exit para sair da maquina-web também.
+
+    exit
+
+Tentaremos acessar diretamente a maquina-bd a partir da nossa máquina. Para isso, voltaremos ao navegador, onde
+acessaremos a página "Painel da VPC". Nela, digitaremos "EC2" no campo de busca e entraremos novamente na página do EC2.
+
+Lembraremos o endereço da nossa máquina clicando no link "instâncias". Na nova página, clicaremos no ID de instância da
+maquina-bd, depois em "Conectar", e copiaremos o comando de conexão.
+
+    ssh -i "aws-ohio-pem." ec2-user@ec2-3-14-95-226.us-east-2.compute.amazonaws.com
+
+Voltaremos ao terminal, colaremos o comando e pressionaremos "Enter". Veremos que ainda não será possível conseguir o
+acesso. A partir da nossa máquina, conseguimos sair, mas não conseguimos entrar novamente.
+
+Isso ocorre pois temos aquela configuração na nossa ACL. Estamos permitindo a saída mas só permitimos a entrada a
+partir da nossa sub-rede pública.
+
+Poderíamos liberar o tráfego de outros lugares, retornando ao "Painel da VPC" no navegador e acessando o submenu "ACLs
+da rede" por meio do explorador lateral. Nele, acessaríamos a redes-ab que corresponde à ACL onde configuramos a regra.
+
+No nosso caso, vamos manter dessa forma, sem liberar outros acessos. Com o Internet Gateway liberamos a sub-rede para
+que ela possa acessar a internet.
+
+Reforçando: Esta rede se tornou pública, portanto existe para o mundo externo e é acessível pela internet. Entretanto, a
+nossa ACL está barrando o tráfego, como se fosse um "firewall" realizando o bloqueio.
+
+Se não quiséssemos esse bloqueio, teríamos que criar um Gateway NAT. Vamos ver como faríamos isso.
+
+Criando um Gateway NAT
+
+No explorador lateral, selecionaremos o submenu "Gateways NAT". O campo "Nome - opcional" recebe o nome do novo gateway.
+Já o campo "Sub-rede" possui uma lista suspensa, na qual deverá ser selecionada a nossa rede pública
+subnet-06681d058414c5533 (infra-subnet-public1-us-east-2c).
+
+Dessa forma, o gateway terá acesso à internet.
+
+Depois, no topo da página, buscaremos o caminho de menus "VPC > Gateways NAT > Criar gateway NAT", onde clicaremos em
+"VPC" para voltarmos ao "Painel da VPC".
+
+No corpo da página, clicaremos em "Tabela de rotas". Selecionando a tabela de rotas já existente da nossa sub-rede
+privada, ou mesmo aquela que acabamos de criar, adicionaríamos a rota enviando-a para o NAT ao invés de enviá-la ao
+Internet Gateway.
+
+Dessa forma, não existiria acesso para dentro da rede, mas sim para fora dela.
+
+Como visto, podemos realizar a mesma tarefa de diversas formas.
+
+Vamos remover o Internet Gateway da sub-rede, clicando novamente em "Associações de sub-rede". Na seção "Associações
+explícitas de sub-rede", clicaremos em "Editar associações de sub-rede". Em seguida removeremos o check na nossa rede
+infra-subnet-private1-us-east-2c e salvaremos as alterações, removendo essa rede da tabela.
+
+No topo da página, buscaremos novamente o caminho de submenus, onde clicaremos em "Tabelas de rotas" para acessar essa
+página. Na seção de mesmo nome, clicaremos no checkbox à esquerda da tabela minha-tabela-de-rota-privada-para-igw, pois
+não queremos que a rede privada se torne pública.
+
+Com o checkbox selecionado, clicaremos em "Ações > Excluir tabela de rotas". Em seguida, precisamos digitar "excluir" no
+campo solicitado e clicar no botão no canto inferior direito para confirmar a operação.
+
+Agora a nossa sub-rede voltou a ser privada. Com isso, não conseguimos mais acessá-la diretamente — só a partir da
+maquina-web.
+
+Entendemos a diferença entre Internet Gateway e NAT Gateway, aprendemos a criar uma tabela de rotas para os dois tipos
+de gateway.
+
+Traremos mais um detalhe: vamos imaginar que queremos acessar um bucket ou um arquivo no S3 através da nossa rede
+privada ou mesmo da pública.
+
+O método da Amazon permite que acessemos esse bucket de dentro da nossa VPC através da internet. Ou seja, saímos da
+nossa rede, batemos na internet e depois voltamos para dentro do bucket ou de qualquer outro serviço da AWS.
+
+Para evitar esse processo, criaremos uma conexão entre as nossas sub-redes e algum serviço. Neste caso, será um bucket
+S3, que é bem simples de configurar.
+
+Esta conexão permitirá o acesso a estes serviços de forma interna à partir da nossa rede privada e poupará recursos da
+nossa rede pública, que não precisará mais passar pela internet.
+
+No próximo vídeo, veremos como criar esta conexão.

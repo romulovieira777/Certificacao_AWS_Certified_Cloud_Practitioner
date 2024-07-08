@@ -1,0 +1,100 @@
+Criamos o nosso bucket, configuramos as permissões e portanto somos capazes de acessar um bucket S3 a partir da nossa
+instância. Mas isso não tem nada a ver com VPC! Não precisamos configurar nada relacionado a VPC para que o acesso
+funcione.
+
+Agora, veremos a parte de redes. Mesmo que a nossa rede VPC e o S3 estejam na AWS e na mesma região, quando fazemos o
+acesso, passamos pela internet, resolvemos o nome, damos vários saltos na rede e só depois retornamos à AWS.
+
+Para ver esse processo acontecendo, usaremos o comando tcptraceroute, junto ao sudo, o endereço
+s3.us-east-2.amazonaws.com que queremos seguir e a porta que queremos acessar.
+
+Neste caso, a porta será 80 que corresponde ao HTTP, mas poderíamos utilizar a porta 443, que é a HTTPS.
+
+    - sudo tcptraceroute s3.us-east-2.amazonaws.com 80
+
+Vamos digitá-lo no terminal e pressionar "Enter". Este comando possui vários passos e pode demorar a ser executado.
+
+Após a sua execução, veremos que ele deu vários saltos por endereços públicos, chegando por fim ao nosso endereço S3
+52.219.110.49. Com isso perdemos tempo e recursos.
+
+Queremos informar que existe um caminho direto a partir da nossa sub-rede até o S3. Faremos isso através de Endpoints
+que ligam um ponto à outro na nossa sub-rede.
+
+Voltaremos à página da AWS, por onde acessaremos nossa configuração de VPC, clicando no submenu "Suas VPCs" por meio do
+explorador. Ainda no explorador, no painel da VPC, clicaremos em "Endpoints".
+
+A página "Endpoints" será aberta, onde veremos que não existe nenhum. Vamos criá-lo clicando no botão "Criar endpoint",
+localizado à direita do título da página.
+
+Neste caso, um endpoint ou VPC endpoint é uma ligação entre nossa sub-rede e um serviço da Amazon.
+
+Na página de criação, acessaremos o campo intitulado "Etiqueta de nome", dentro do qual digitaremos o nome direct-s3. O
+nome não precisa ser esse, sinta-se livre para escolher um nome melhor!
+
+Estamos nos conectando a um serviço da Amazon, portanto, na seção "Categoria de serviço", selecionaremos "Serviços da
+AWS".
+
+Já na seção "Serviços", filtraremos o serviço que queremos — no caso, digitaremos "s3" no campo de busca e
+selecionaremos a opção "com.amazonaws.us-east-2.s3" na lista de resultados.
+
+Serão exibidas três opções. Entre elas, não abordaremos a "com.amazonaws.us-east-2.s3-outposts". As outras duas opções
+são denominadas "com.amazonaws.us-east-2.s3", onde uma possui o tipo interface e outra o tipo gateway.
+
+O tipo dita a forma como nos conectaremos: com o gateway, temos uma espécie de VPN direto para o S3. Já com a interface,
+a própria Amazon cria e conecta essas duas interfaces de rede de forma virtual. A diferença entre elas é sutil.
+
+Utilizamos esse tipo em serviços como o S3 e DynamoDB. Em todos os outros, nós utilizamos o tipo interface. Na própria
+documentação da Amazon temos essa recomendação.
+
+No nosso caso estamos utilizando o S3, e portanto selecionaremos o tipo gateway. Neste momento, será aberta a seção
+"VPC" onde selecionaremos em qual VPC criaremos esse endpoint. Vamos selecionar a nossa infra-vpc:
+"vpc-0615fc55438a59826 (infra-vpc)".
+
+O endpoint do tipo gateway precisa ser adicionado nas nossas tabelas de rotas. Na seção "Tabela de rotas", podemos
+adicionar em uma ou mais tabelas. Neste caso, adicionaremos nas três redes que temos: a principal, a pública e a
+privada. Dessa forma, se criarmos uma nova sub-rede já teremos este endpoint adicionado em todos os locais.
+
+Por enquanto utilizaremos o endpoint somente na rede pública para vermos a rota acontecendo.
+
+Na seção "Política", podemos limitar o acesso, proibindo que o acesso a esse endpoint fosse feito através de determinada
+rede, por exemplo. No nosso caso, liberaremos o acesso irrestrito, selecionando a opção "Acesso total".
+
+A sessão "Tags" terá a chave "Name" com o valor "direct-s3" preenchida. Vamos deixar como está. Por fim, clicaremos no
+botão "Criar endpoint", no fim da página, alinhado à direita.
+
+Teoricamente, é só isso que precisamos. Seremos redirecionados para a página "Endpoints", onde veremos o endpoint que
+criamos. Na coluna "Status", veremos o valor "Disponível". Isso leva um tempo para ser refletido na rede, portanto vamos
+aguardar alguns minutos antes de executar o tcptraceroute novamente.
+
+Enquanto isso, conferiremos a nossa tabela de rotas para garantir que temos uma rota definida na tabela de rotas da rede
+pública, por exemplo, para acessarmos o endpoint em vez do S3 utilizando o ID que acabamos de criar.
+
+Por meio do explorador, abriremos o submenu "Tabelas de rotas", no qual buscaremos a tabela de rotas da sub-rede pública
+infra-rtb-public. Clicaremos em seu ID, e na seção "Rotas" veremos as nossas rotas, entre as quais identificaremos uma
+rota com um destino esquisito: pl-7ba54012, o qual entenderemos posteriormente.
+
+O alvo dele será o endpoint que acabamos de criar. Se clicarmos neste destino esquisito, veremos que ele é uma lista de
+prefixos — o pl significa "prefix list". Se selecionarmos essa lista, serão exibidos todos os seus prefixos, todas as
+entradas de intervalos de IP que fazem parte dela.
+
+Quando tentarmos acessar qualquer um desses endereços, cairemos na regra de roteamento e iremos para o endpoint.
+
+Voltando ao terminal, veremos que fomos desconectados. Vamos rodar o comando de conexão para voltar à máquina.
+
+    ssh -i "aws-ohio-pem" ec2-user@ec2-18-224-179-96.us-east-2.compute.amazonaws.com
+
+Em seguida, executaremos novamente o tcptraceroute para
+
+    sudo tcptraceroute s3.us-east-2.amazonaws.com 80
+
+Vamos aguardar a sua execução, enquanto observamos que nenhum salto foi feito, exceto aquele que direciona diretamente
+para o S3. Dessa forma, realizamos uma ligação direta entre a nossa VPC e o S3, sem precisar acessar a internet.
+
+Este processo poupa recursos e otimiza a nossa performance, além de economizar dinheiro nos casos em que precisamos
+utilizar NAT Gateways ou outros serviços pagos.
+
+Entendemos como trabalhar com sub-redes e entendemos as tabelas de rotas. A seguir, abordaremos o controle da nossa VPC.
+Vamos adquirir mais controle sobre como e quem acessa a nossa rede.
+
+Já estamos utilizando uma técnica de controle, a qual entenderemos melhor. Não se trata de uma tecnologia da AWS, mas é
+interessante conhecê-la e entender como estamos realizando esta tarefa.
