@@ -1,0 +1,8 @@
+Existe uma técnica que consiste em permitir acesso a uma máquina somente se passarmos antes por outra máquina, ou seja,
+usar uma máquina intermediária. Isso aumenta a segurança de nossa rede.
+
+No vídeo a seguir essa técnica é explicada com mais detalhes:
+
+O Bastion Host (ou jump host) atua como um servidor proxy para dar acesso a outros servidores e protocolos. Ele tem um
+papel importantes para a proteção e segurança do "seu back-end" e representa o ponto de entrada. Aprenda nesse vídeo, na
+prática, como configurar e usar um Bastion Host dentro da cloud AWS!

@@ -1,0 +1,13 @@
+Miguel, após configurar corretamente toda sua infraestrutura de redes com AWS VPC, decidiu que gostaria de monitorar o
+que acontece na rede. Para isso, ele configurou os logs da VPC para serem enviados para o CloudWatch. Após realizar toda
+a configuração, Miguel percebeu que haviam diversos acessos desconhecidos às suas sub-redes sendo, corretamente, negados.
+
+Por que os logs da rede de Miguel estão exibindo tantos acessos desconhecidos partindo da internet?
+
+a) Porque a internet está repleta de robôs que acessam tudo que for possível. -> Alternativa correta
+    R: A internet possui muitos robôs que chamamos de crawlers. Esse tipo de robô tenta acessar e registrar tudo que for
+    possível na internet. Essa é uma das formas que torna possível o Google encontrar diversos sites, por exemplo.
+
+b) Porque os logs foram configurados incorretamente, exibindo entradas de outras redes.
+
+c) Porque uma configuração incorreta liberou o acesso à VPC, a partir da internet.

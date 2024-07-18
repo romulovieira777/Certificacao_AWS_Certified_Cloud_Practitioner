@@ -1,0 +1,7 @@
+Nessa aula, nós:
+
+    - Criamos políticas e aplicamos funções mais avançadas de permissões na AWS;
+    - Guardamos os logs gerados pela VPC que podem ser a nível da própria VPC, a nível de sub-rede ou até de uma
+      interface de rede;
+    - Configuramos um bastion host para termos um maior controle sobre os acessos em nossas instâncias que estão na
+      sub-rede privada.

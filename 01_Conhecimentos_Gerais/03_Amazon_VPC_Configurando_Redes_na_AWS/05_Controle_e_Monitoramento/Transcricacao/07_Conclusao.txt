@@ -1,0 +1,75 @@
+Parabéns por terem chegado ao final de mais um curso de AWS aqui na Alura!
+
+Neste curso aprendemos sobre redes na AWS com o VPC - Virtual Private Cloud, e entendemos desde o começo o que é o VPC.
+Também conhecemos a VPC padrão, que está disponível em cada uma das regiões da AWS e os componentes de uma VPC, como a
+sub-rede.
+
+A partir disso começamos nossa configuração de redes na AWS. Tendo entendido o conceito de VPC, conversamos um pouco
+sobre conectividade e segurança, então relembramos os conceitos de Security groups e ACLs- Access Control Lists
+(Listas de Controle de Acesso).
+
+Com o entendimento dessas duas formas de limitar acesso e garantirmos segurança, entendemos as diferenças entre os dois,
+quando utilizar cada um e como em alguns cenários é interessante utilizar os dois. Depois criamos nossa própria VPC do
+começo, e com isso tivemos uma sub-rede pública e uma privada.
+
+Ao final, terminamos com algo parecido com o diagrama a seguir:
+
+Diagrama de conectividade e segurança de acordo com o que foi aprendido no curso. Nele há um retângulo pontilhado e, ao
+lado direito dele há o desenho de uma nuvem com duas setas, uma para cima e outra para baixo. Dentro do retângulo
+pontilhado há um retângulo de linha reta. Na parte superior direita, no espaço entre o retângulo pontilhado e o de linha
+reta, tem o desenho de um balde e abaixo dele está escrito "Amazon S3". No canto superior esquerdo do retângulo de linha
+reta tem o desenho de uma nuvem com um cadeado dentro e o texto "VPC" abaixo da nuvem. Próximo ao canto inferior direito
+do mesmo retângulo tem outro desenho de nuvem, mas dessa vez vazia. Dentro desse retângulo de linha reta tem outros dois
+retângulos: um verde claro, na parte superior, representando a sub-rede pública, e outro azul claro, na parte inferior,
+representando a sub-rede privada. Entre o retângulo da sub-rede pública e o da VPN tem um ícone lilás representando o
+VPC endpoint. Ele tem a forma de um octógono contendo dois trapézios na vertical, com a base de cada um paralela uma à
+outra. Uma linha pontilhada conecta os trapézios. Uma seta sai do endpoint e aponta para o balde do S3. Na parte
+superior esquerda do retângulo verde está o texto "Public subnet". Dentro dele tem três ícones: um representando a
+máquina web, outro representado a máquina do bastion host e o terceiro representando o NAT Gateway. O ícone do NAT
+Gateway possui três setas e uma linha sai de cada uma, interligando-se e formando uma única seta. Da sub-rede pública
+saem duas setas também verdes: uma se liga ao endpoint e outra ao desenho de nuvem vazia. Na parte superior esquerda do
+retângulo azul claro tem o texto "Private subnet". Dentro da sub-rede privada tem apenas a representação da máquina do
+banco de dados. Uma seta sai do bastion host, que está na sub-rede pública, e aponta para representação do banco de
+dados, na sub-rede privada. E da sub-rede privada, por fim, saem duas setas: uma aponta para o NAT Gateway e outra para
+o endpoint.
+
+Não sou o melhor desenhista do mundo, então pedi para o pessoal de design da Alura fazer esse diagrama para nós. Temos
+representado em verde a sub-rede pública e em azul a sub-rede privada que construímos no nosso projeto. Com isso
+entendemos o conceito de conectividade com o mundo exterior.
+
+Por exemplo, temos o NAT Gateway, que é o ícone dentro da sub-rede pública que tem três setas que se unem em uma única
+seta. Aprendemos sobre o Internet Gateway, representado pelo ícone de nuvem.
+
+O Internet Gateway que nos permite acessar a Internet, recebendo e enviando dados, já o NAT Gateway permite apenas a
+saída de dados para Internet, e não a volta. Descobrimos também que isso que define uma sub-rede pública: a conexão dela
+com o Internet Gateway, que não acontece na sub-rede privada.
+
+Avançamos mais nosso conhecimento e aprendemos sobre as tabelas de rota, e com elas fizemos o roteamento para o NAT
+Gateway, para o Internet Gateway e para o VPC endpoint. O VPC endpoint nos permite ter uma conexão direta com algum
+serviço da AWS, como por exemplo o Amazon S3, sem precisarmos passar pela Internet.
+
+Reparem que tudo fica dentro da nossa estrutura da AWS. Saímos da VPC direto para o S3 sem passar pela Internet graças
+ao VPC endpoint.
+
+Ao final, para aumentarmos nosso controle e segurança, entendemos o que era um bastion host e criamos no nosso projeto.
+Somente a partir dele acessamos a máquina que está dentro da sub-rede privada, que está simulando uma máquina de banco
+de dados.
+
+Além disso, configuramos logs. Então além de acessarmos o S3, também estamos acessando o CloudWatch, porque estamos
+usando esse serviço do AWS.
+
+Portanto avançamos bastante no nosso conhecimento de AWS. Quero adiantar que isso não é todo conhecimento sobre AWS e
+nem sobre VPC, então vocês podem continuar os seus estudos tanto com cursos da Alura, sobre outros serviços e
+certificações da AWS, quanto utilizando a documentação como aprendemos um pouco nesse curso.
+
+É importante que, conforme conheçamos os recursos nos cursos da Alura, também nos familiarizemos com a documentação.
+Também é importante que, conforme nos tornamos profissionais de infraestrutura em rede, ter familiaridade com a
+documentação do serviço que estamos utilizando.
+
+Espero que tenham aprendido bastante, mas caso tenha ficado alguma dúvida, ou algo não tenha feito sentido, não hesitem
+e abra um tópico no fórum do curso. Podem também entrar no servidor do Discord Alura, onde essa interação costuma ser
+mais dinâmica.
+
+Parabéns mais uma vez por terem chegado ao final do curso e espero ver vocês em outros cursos da Alura.
+
+Abraços e tchau!

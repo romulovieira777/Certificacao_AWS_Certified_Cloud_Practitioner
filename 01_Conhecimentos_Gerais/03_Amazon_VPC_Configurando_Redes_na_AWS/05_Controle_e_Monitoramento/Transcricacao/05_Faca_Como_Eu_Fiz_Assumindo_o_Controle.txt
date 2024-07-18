@@ -1,0 +1,67 @@
+Nessa aula você aprendeu sobre logs da VPC e sobre Bastion hosts. Chegou a hora praticar o que aprendeu!
+
+Vamos lá?
+
+Opinião do instrutor
+
+Para começar a praticar, siga os seguintes passos:
+
+1) No console da AWS, acesse o painel do CloudWatch;
+
+2) Crie um novo grupo de logs para receber os logs da VPC;
+
+3) Acesse agora o painel IAM e crie uma nova função (em inglês, ROLE), para isso:
+
+    a) Ao criar essa função, crie uma nova política a partir do seguinte JSON:
+
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents",
+            "logs:DescribeLogGroups",
+            "logs:DescribeLogStreams"
+          ],
+          "Resource": "*"
+        }
+      ]
+    }
+
+    b) Em seguida, com a função criada, edite a “Política de confiança” (em inglês, Trust policy) com o seguinte JSON:
+
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "vpc-flow-logs.amazonaws.com"
+          },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+
+4) No painel da VPC, acesse a VPC que criamos durante o curso;
+
+5) Vá até Ações > Configurações de log de fluxo;
+
+6) Envie os logs de fluxo para o grupo do CloudWatch que criamos;
+
+7) Defina como “Função do IAM” a que criamos previamente;
+
+8) Após alguns minutos e acessos à VPC, o grupo de logs que criamos deverá ter diversas entradas de log;
+
+9) Crie uma nova instância EC2 em nossa sub-rede pública para servir como Bastion Host;
+
+10) Atribua um novo grupo de segurança a essa instância, permitindo acesso SSH a partir de seu IP;
+
+11) No grupo de segurança que libera o acesso SSH à máquina que está na sub-rede privada, defina como nova origem o bastion host;
+
+12) Acesse sua máquina na sub-rede privada com o seguinte comando:
+
+    ssh -i /caminho/de/sua/chave.pem -J usuario@ip-publico-bastion-host usuario@ip-privado-da-maquina-na-sub-rede-privada
