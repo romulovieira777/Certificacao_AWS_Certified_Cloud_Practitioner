@@ -1,0 +1,8 @@
+Sobre a criação de buckets é correto afirmar:
+
+Podem ser criados exclusivamente pela console (interface web AWS).
+
+Ambas as alternativas estão corretas.
+
+Possuem nomes únicos independentes da Conta ou Região. -> Alternativa correta
+    R: Exatamente, os buckets possuem nome globais e portanto não podem ser duplicados. (xxx.amazonaws.com)

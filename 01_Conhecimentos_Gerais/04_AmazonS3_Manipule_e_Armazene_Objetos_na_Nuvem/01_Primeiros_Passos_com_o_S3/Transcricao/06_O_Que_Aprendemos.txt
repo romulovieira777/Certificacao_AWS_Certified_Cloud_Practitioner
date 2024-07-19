@@ -1,0 +1,5 @@
+Nesta aula aprendemos:
+
+    - Breve resumo sobre as principais características do serviço de armazenamento de objetos S3;
+    - Como criar buckets através da console AWS;
+    - Manipular objetos através da console.

@@ -1,0 +1,35 @@
+Antes de tudo, vamos checar os conhecimentos prévios exigidos para esse curso.
+
+Para começar, é indispensável termos uma conta na AWS. Podemos criar uma conta free-tier, seguindo o processo descrito
+nas referências do curso, para ter acesso gratuito à maioria dos serviços, incluindo o S3.
+
+O instrutor rodará o Linux em um container do Docker, mas podemos utilizar o sistema operacional de nossa preferência.
+Lembrando que cada sistema terá um processo de instalação diferente para a CLI.
+
+O S3 é um dos principais serviços da AWS e trabalha com armazenamento de objetos. Arquivos em geral, independente do
+formato, são considerados objetos no S3. No contexto da AWS, chamamos repositórios de bucket. Essa nomenclatura também é
+utilizada em outras nuvens, como a Google Cloud Platform (GCP), por exemplo.
+
+No bucket, vamos inserir arquivos, aplicar políticas e fazer as atividades do curso. Agora, vamos começar a trabalhar
+com S3. Vamos interagir com o console para criar nosso bucket, subir alguns arquivos e entender o comportamento do
+serviço.
+
+Acessaremos o Guia do Usuário do S3 para entender um pouco mais sobre a plataforma. Tudo que usaremos no treinamento
+poderá ser encontrado nessa documentação.
+
+Depois de criar nossa conta, vamos acessar o console em https://aws.amazon.com/pt/console/ e fazer login. Na barra de
+pesquisa do site, vamos buscar por "S3" e selecionar a primeira opção. Chegou a hora de criar o bucket.
+
+Para fazer isso, selecionaremos a opção "Create bucket" na parte superior direita da tela. Depois, vamos definir
+"rmerces-lab1" como Bucket name. Vale lembrar que o nome do bucket precisa ser único na AWS. Isso acontece porque esses
+nomes são usados na criação de domínios.
+
+Vamos definir a AWS Region em "US East (N. Virginia) us-east-1". O preço varia por região, como aprendemos nos cursos de
+onboarding em Cloud. Manteremos o padrão de ACLs, que é "disabled", e de Block Public Access settings, bloqueando
+acessos públicos.
+
+Também vamos manter o padrão em todas as opções abaixo delas. Depois, clicaremos em "Create bucket". Agora, com o
+repositório criado, podemos armazenar objetos. Vamos clicar em "rmerces-labs1" para iniciar esse processo simplificado.
+Basta apenas selecionar a opção "Upload" e arrastar os arquivos desejados para dentro do bucket.
+
+Agora, é só aguardar o upload. Na próxima aulas, vamos conhecer outros detalhes do bucket.

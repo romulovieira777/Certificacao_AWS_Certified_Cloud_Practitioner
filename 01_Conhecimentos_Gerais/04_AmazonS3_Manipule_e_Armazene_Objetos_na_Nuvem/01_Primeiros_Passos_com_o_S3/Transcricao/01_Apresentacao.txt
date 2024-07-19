@@ -1,0 +1,16 @@
+Boas-vindas ao curso de AWS S3!
+
+Armazenamento é um dos nossos principais objetivos quando começamos a trabalhar com o conceito de nuvem.
+
+Esse curso, de maneira específica, tratará sobre armazenamento na Amazon Web Services (AWS) com S3. Vamos aprender os
+detalhes e principais recursos desse serviço, como ciclo de vida de objetos, permissionamento de acesso aos buckets e
+classe de armazenamento.
+
+Existem duas possibilidades para armazenar objetos: pagar um valor maior para recuperá-lo rapidamente ou pagar bem menos
+e levar mais tempo para acessá-lo novamente. A escolha dependerá do projeto e, por isso, precisaremos conhecer todas as
+possibilidades.
+
+No treinamento, vamos trabalhar com CLI, que viabilizará a criação de nossos scripts e automações, e com CloudFront, que
+também está diretamente ligado ao S3. Usaremos essas ferramentas para executar nossos projetos.
+
+E aí, vamos começar?

@@ -1,0 +1,10 @@
+Por padrão o acesso aos buckets / objetos é:
+
+
+A) Restrito. -> Alternativa correta
+    R: Exatamente. Por padrão, todos os buckets e objetos do Amazon S3 são privados. Somente o proprietário do recurso
+    que é a conta de que criou o recurso pode acessar esse bucket.
+
+B) Público para quem possui a URL do objeto (ex: https://rmerceslabs1.s3.amazonaws.com/bookmarks.html).
+
+C) Público.
