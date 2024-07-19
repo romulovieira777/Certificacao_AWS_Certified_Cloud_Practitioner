@@ -1,0 +1,25 @@
+Na política abaixo está definido que:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicRead",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"            ],
+            "Resource": [
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
+            ]
+        }
+    ]
+}
+
+
+A) Os usuários podem fazer apenas a leitura do conteúdo e não o Download.
+
+B) O acesso ao conteúdo do bucket é público. -> Alternativa correta
+    R: Exatamente. Este é um exemplo de política para tornar o conteúdo público para qualquer usuário.
+
+C) Como o Principal não está especificado somente o usuários cadastrados no IAM tem acesso ao bucket.

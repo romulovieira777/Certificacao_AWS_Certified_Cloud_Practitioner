@@ -1,0 +1,43 @@
+Agora, vamos analisar a policy que acabamos de colar. Primeiro, daremos atenção à chave "Principal": "*",. Essa chave
+está amarrada à origem. Nela, * representa a liberação de acesso público aos arquivos
+
+Depois, vamos olhar para a chave "Action", executora, ainda que de maneira granular, conforme vimos na documentação do
+S3, das ações GetObject e GetObjectVersion. Vamos remover a segunda ação, porque não estamos trabalhando com
+versionamento nesse bucket. Portanto, a linha "s3:GetObjectVersion" não fará diferença no nosso código.
+
+Também temos a chave "Resource", que representa o recurso. Na AWS, todo recurso tem um arn, que funciona como
+identificação. O arn do código que copiamos é genérico. Portanto, precisamos inserir o do nosso bucket,
+arn:aws:s3:::rmerces-labs2, que está localizado acima de "Policy". A chave "Resource" ficará assim:
+
+"Resource": [
+    "arn:aws:s3:::rmerces-labs2
+    /*"
+]
+
+Com essa alteração, disponibilizamos o acesso de todos os objetos do bucket de agora em diante. Poderíamos criar outras
+pastas, como /videos ou /imagens, e inserir essas informações. Assim, apenas elas estariam disponíveis para acesso
+público.
+
+Depois de criarmos essas definições, vamos salvar. E, na sequência, vamos voltar à página inicial dos buckets e ver que
+a informação de acesso do "rmerces-labs2" foi alterada para "Public", o que representa o sucesso das nossas alterações.
+
+Agora, vamos fazer um teste. Abrindo o bucket, vamos selecionar um de seus objetos. No vídeo, o instrutor selecionou
+"img1.png". Vamos copiar sua URL e tentar acessar o arquivo em outra aba. A partir de agora, isso funcionará.
+
+É possível alterar a policy de acordo com nossas vontades. Poderíamos, por exemplo, criar um diretório. Vamos voltar à
+página da policy e clicar em "Edit", para editá-la. Vamos adicionar png à chave "Resource":
+
+"Resource": [
+    "arn:aws:s3:::rmerces-labs2
+    /*png"
+]
+
+Depois disso, aplicaremos a policy. Acessando nosso bucket, vamos fazer o upload de um arquivo de outro formato. No
+vídeo, o instrutor adiciona o objeto "arq.txt". Se tentarmos acessar o novo objeto a partir de sua URL pública, não
+vamos conseguir. Isso acontece porque, com a alteração feita na nossa policy, liberamos o acesso público apenas para
+arquivos* png*.
+
+Em outras palavras, o bucket está público, mas nós criamos uma restrição que só libera acesso público a arquivos neste
+formato. É possível, então, fazer várias alterações na policy para reorganizar os objetos do repositório.
+
+Na próxima aula, vamos criar um usuário e dá-lo acesso, por console, para interagir com o bucket.

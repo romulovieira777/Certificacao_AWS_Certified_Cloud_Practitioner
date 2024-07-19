@@ -1,0 +1,7 @@
+Nesta aula aprendemos:
+
+    - Criar um bucket Público;
+    - Configurar uma policy de acesso;
+    - Como conceder acesso a um usuário através da console;
+    - Utilizar o IAM para criar usuários e grupos;
+    - Diferença entre as políticas de acesso.

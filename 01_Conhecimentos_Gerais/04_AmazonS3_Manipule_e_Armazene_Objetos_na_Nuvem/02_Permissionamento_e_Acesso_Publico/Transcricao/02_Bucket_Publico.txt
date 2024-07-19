@@ -1,0 +1,10 @@
+Para mudarmos o permissionamento de um bucket privado para público é necessário:
+
+A) Configurar uma Bucket Policy.
+
+
+B) Ambas estão corretas. -> Alternativa correta
+    R: Exatamente. Começamos pela mudança da configuração em Block all public access seguindo com a criação de uma
+    policy com as devidas regras de acesso.
+
+C) Desativar a opção Block all public access (permissões de acesso).

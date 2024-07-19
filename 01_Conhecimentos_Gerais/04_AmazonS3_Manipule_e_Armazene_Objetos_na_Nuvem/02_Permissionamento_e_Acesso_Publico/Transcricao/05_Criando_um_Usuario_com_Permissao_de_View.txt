@@ -1,0 +1,80 @@
+Agora, vamos criar um novo usuário e dá-lo acesso ao console. Com isso, ele poderá manipular arquivos.
+
+Entre a aula passada e esta, o instrutor criou um novo bucket, chamado "rmerces-labs3", seguindo o mesmo método
+utilizado nos vídeos anteriores. Além disso, ele adicionou os mesmos arquivos do bucket "rmerces-labs2". Esse novo
+repositório está fechado para acessos públicos. Todas as outras configurações estão no default: o instrutor só criou um
+novo nome.
+
+Vamos criar um usuário, um grupo e atribuir permissões relacionadas ao bucket. Na AWS, não é possível se registrar
+apenas ao S3:
+
+Obs: Há vários outros serviços que precisamos aprender, como o Identity Access Management (IAM), responsável por
+gerenciar usuários e grupos na AWS. Para realmente utilizar o bucket, precisaremos entendê-lo.
+
+Vamos pesquisar "IAM" na barra de pesquisa do AWS para visitar sua página. Vamos acessar "User groups > Create group", a
+primeira opção de "Access management" na barra lateral.
+
+É possível criar grupos, adicionar usuários e editar a policy de uma vez só. Nesse treinamento, porém, estamos
+aprendendo a fazer essas atividades separadamente. Na página web, vamos inserir o nome do grupo, "s3-view", na caixa de
+texto da seção "Name the group". Daremos esse nome a ele porque sua URL pública só dará direito à visualização.
+
+Agora, vamos rolar a página para baixo, até encontrarmos a seção "Attach permissions policies - Optional". Lá,
+poderíamos criar a policy de maneira manual, clicando em "Create policy". Porém, vamos escolher uma das policies
+disponibilizadas um pouco abaixo.
+
+Vamos pesquisar "S3" na barra de busca acima da lista, para que a lista exiba apenas as policies relacionadas a esse
+serviço. Vamos selecionar a policy "AmazonS3ReadOnlyAccess", que somente dá acesso de visualização. Depois disso, é hora
+de clicar em "Create group" para criar o grupo já vinculado à policy.
+
+Ainda não há, porém, usuários no grupo. Vamos criá-los indo à barra lateral para clicar em "Users", a segunda opção de
+"Acess management". Na nova página, vamos clicar em "Add user", para adicionar usuários. Na seção "Set user details",
+vamos inserir o nome do usuário, "s3-user1", na barra de texto à direita de "User name".
+
+Obs: Não é necessário inserir "S3" no nome. O instrutor faz isso por organização.
+
+Na segunda seção, "Select AWS access type", vamos definir o tipo de acesso concedido ao usuário que estamos criando. Em
+"Select AWS credential type", vamos selecionar a segunda opção, "Password - AWS Management Console access", que concede
+acesso via console.
+
+Ainda na segunda seção, mas em "Console password", vamos selecionar a primeira opção, para gerarmos uma senha
+automaticamente. Por fim, vamos desmarcar o box de "Require password reset", para que não seja necessário criar uma nova
+senha no primeiro acesso.
+
+Clicando em "Next: Permissions", vamos associar o usuário ao grupo que criamos anteriormente. No caso, o grupo
+"s3-view". Vamos clicar em "Next: Tags" e, nessa etapa, não faremos nada. Apenas avançaremos para "Next: Review", outra
+página que vamos ignorar. Basta clicar em "Create user", no final da página, para que o usuário seja criado.
+
+Obs: Lembre de anotar a senha que foi gerada automaticamente, porque não será possível visualizá-la no futuro.
+
+É possível, nesta mesma página, fazer o download do csv, clicando no botão "Download .csv". Agora que o usuário está
+criado, vamos aprender a acessar o console da AWS. Para isso, vamos acessar "Users > s3-user1 > Security credentials".
+Em "Summary", vamos encontrar a URL de acesso ao console.
+
+Vamos copiá-la em outro browser, já que vamos alternar entre usuários. Seremos redirecionados a uma página de login,
+que solicita o nome do usuário e sua senha. Na primeira caixa de texto, vamos inserir "s3-user1". E, na segunda, a senha
+automática que foi gerada anteriormente. Depois disso, basta fazer o login.
+
+Esse é o mesmo console da AWS, mas com algumas restrições. Vamos buscar por "S3" na barra de pesquisa. Clicando na
+primeira opção, somos levado à página que dá acesso aos buckets.
+
+Obs: Não confunda IAM com policy.
+
+Se acessarmos "rmerces-labs3 > img1.jpg > Download", vamos conseguir baixar e visualizar a imagem. Agora, vamos tentar
+provisionar alguns recursos para esse usuário, clicando em "Create bucket" para criar um novo repositório. Vamos dar o
+nome "rmerces-labs4" ao novo bucket, mantendo as outras opções no padrão, e criá-lo.
+
+Quando tentarmos fazer isso, não vamos conseguir e visualizaremos uma mensagem de falha, porque este usuário não tem
+permissão para fazê-lo. Agora, vamos tentar subir uma instância, buscando por "EC2" na barra de pesquisa e clicando na
+primeira opção.
+
+Nesta página, de início, já vamos nos deparar com uma série de avisos de erro. Se preenchermos todas as opções para
+criar a instância, não conseguiremos, assim como na tentativa de criação do bucket. Por fim, vamos voltar ao bucket
+"rmerces-labs1".
+
+Lá, vamos selecionar a opção "Upload" e adicionar outro arquivo ao repositório. No vídeo, o instrutor fez o upload do
+vídeo "lightsaber_story.mp4". Mais uma vez, veremos nossa tentativa falhar, porque não temos permissão para fazer isso.
+O acesso que concedemos a esse usuário é apenas de visualização.
+
+Aprendemos que é possível criar grupos e usuários com permissões diferentes, dando acesso a áreas específicas do bucket.
+
+No próximo vídeo, vamos criar outro usuário, gerenciar suas permissões e começar a trabalhar com CLI.
