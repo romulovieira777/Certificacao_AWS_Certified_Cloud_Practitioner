@@ -1,0 +1,8 @@
+Para copiarmos todo o conteúdo de um diretório local para o nosso bucket alura-labs devemos utilizar o seguinte comando:
+
+A) aws s3 cp * s3://alura-labs
+
+B) aws s3 sync . s3://alura-labs -> Alternativa correta
+    R: Exatamente com o sync você garante que todo o conteúdo seja replicado no bucket.
+
+C) aws s3 mv * s3://alura-labs

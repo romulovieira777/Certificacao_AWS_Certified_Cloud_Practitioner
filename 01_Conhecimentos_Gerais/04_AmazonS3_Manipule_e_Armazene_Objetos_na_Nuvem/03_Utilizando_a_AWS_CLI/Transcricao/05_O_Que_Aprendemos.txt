@@ -1,0 +1,4 @@
+Nesta aula aprendemos:
+
+    - Instalar e configurar a CLI;
+    - Principais comandos da CLI aws s3.

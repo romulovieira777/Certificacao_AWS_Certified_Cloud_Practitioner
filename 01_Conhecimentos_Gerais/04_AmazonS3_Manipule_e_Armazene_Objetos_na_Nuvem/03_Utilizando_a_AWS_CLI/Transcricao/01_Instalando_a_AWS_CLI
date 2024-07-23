@@ -1,0 +1,50 @@
+Agora que dominamos o console do S3, vamos começar a utilizar sua CLI. Depois disso, vamos aumentar bastante nossa
+capacidade de interação com o serviço.
+
+Vamos acessar a documentação em https://docs.aws.amazon.com/AmazonS3/latest/userguide/setup-aws-cli.html. Neste link,
+vamos instalar a CLI da AWS com todas as suas subferramentas para linha de comando. Essa ferramenta não serve apenas
+para o S3, ela é aplicável, por exemplo, para criação de máquinas virtuais, bancos de dados e outros serviços.
+
+Dentro da AWS CLI, há alguns grupos de comando. No treinamento, vamos utilizar os comandos dos grupos "s3" e "s3api". O
+primeiro serve para criar, apagar e copiar buckets, e o segundo, para lidar com versionamento, entre outras funções.
+
+Vamos rolar a página para baixo, até que encontremos a seção "To set up the AWS CLI". Agora, clicaremos em "Getting Set
+Up with the AWS Command Line Interface". Cada sistema operacional terá seus próprios detalhes de instalação. No vídeo, o
+instrutor usa Linux. Por isso, ele copia o código destinado a esse sistema:
+
+$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+Vamos colar o código no terminal do nosso computador e executar o comando aws, para iniciar o processo de configuração,
+ao qual daremos continuidade com a inserção de aws configure. Mas precisamos, ainda, de uma chave e uma secret para
+completar o processo.
+
+Para isso, vamos criar um usuário administrador para o S3. Se criássemos um administrador com acesso geral, também
+teríamos sucesso, mas vamos criar um com acesso apenas a esse serviço.
+
+Para isso, vamos clicar em "Create group" para criar o grupo "s3-admin" e selecionar a policy "AmazonS3FullAccess" para
+ele. Essa opção dará acesso total ao usuário. Agora, voltaremos à página "User groups". Ao fazer isso, veremos o ícone
+que indica a ausência de usuários no grupo que acabamos de criar.
+
+Para resolver o problema, vamos acessar "IAM > Users > Add Users". Na caixa de texto ao lado de "User name", vamos
+inserir "s3-admin". Na seção de baixo, "Select AWS access type", vamos selecionar a primeira opção, "Access key -
+Programatic access". Depois disso, podemos avançar para as próximas páginas, sem fazer alterações, e criar o usuário.
+
+Agora, precisamos fazer o download do arquivo .csv e salvar tanto a Access key ID *como a *Secret access key que foram
+geradas. Precisaremos delas para configurar a AWS CLI.
+
+Obs: Você não poderá acessar esses dados no futuro. Se perdê-los, precisará criar outro usuário.
+
+Agora, de volta ao console, vamos inserir o comando aws configure. O console nos solicitará primeiro a Access key ID e,
+depois, a Secret Access key. Vamos digitar essas informações. Depois, precisaremos determinar a Default region. No vídeo,
+o instrutor seleciona a região us-east-1, utilizada no início do treinamento.
+
+Depois disso, vamos definir json como nosso output. Na sequência, a configuração estará pronta. Agora é hora de testar
+se tudo deu certo. Como já temos as credenciais, podemos fazer isso inserindo o comando aws s3 ls. Como resposta, o
+console apresentará os três buckets que criamos durante o treinamento.
+
+Isso significa que já podemos acessá-los pela linha de comando. Para acessar os buckets, utilizaremos o comando aws s3
+ls s3://rmerces-labs1. Fazendo o acesso, conseguiremos visualizar os objetos do repositório pelo console.
+
+Na próxima aula, continuaremos a interagir com a AWS CLI.
