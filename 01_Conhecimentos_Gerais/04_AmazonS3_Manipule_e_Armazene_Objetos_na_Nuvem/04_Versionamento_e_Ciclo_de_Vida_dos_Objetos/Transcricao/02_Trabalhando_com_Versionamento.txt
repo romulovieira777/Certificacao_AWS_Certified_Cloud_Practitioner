@@ -1,0 +1,9 @@
+Sobre a identificação dos objetos no bucket é correto afirmar que:
+
+A) Cada objeto tem um ID exclusivo (exceto as versões do mesmo arquivo).
+
+B) Os objetos versionados ganham a extensão .1, .2, etc.
+
+C) Cada objeto tem um ID exclusivo (inclusive as versões do mesmo arquivo). -> Alternativa correta
+    R: Exato. A referência de cada objeto dentro do bucket é o seu ID. Identificação esta exclusiva , independente de
+    estarmos ou não utilizando o versionamento.

@@ -1,0 +1,7 @@
+Nesta aula aprendemos:
+
+    - Versionamento dos objetos;
+    - Configurando um bucket com versionamento;
+    - Utilizar comandos s3api;
+    - Conceito sobre ciclo de vida dos objetos;
+    - Aplicar regras de ciclo de vida.

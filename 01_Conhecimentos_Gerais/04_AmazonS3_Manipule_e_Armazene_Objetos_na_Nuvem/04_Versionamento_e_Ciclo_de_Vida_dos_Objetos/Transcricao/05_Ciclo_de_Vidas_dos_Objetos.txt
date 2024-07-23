@@ -1,0 +1,10 @@
+O ciclo de vida dos objetos trabalha com as seguinte(s) regra(s):
+
+A) Validade (tempo de duração) e tamanho do objeto.
+
+B) Transição de classe de armazenamento e validade (tempo de duração). -> Alternativa correta
+    R: Exato. Por exemplo, você pode optar por fazer a transição de objetos para a classe de armazenamento
+    S3 Standard – IA 30 dias após a criação deles. A ação baseada na validade faz a exclusão do objeto após o prazo
+    definido.
+
+D) Tamanho do objeto e transição de classe de armazenamento.

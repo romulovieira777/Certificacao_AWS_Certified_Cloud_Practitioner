@@ -1,0 +1,47 @@
+Agora vamos colocar o versionamento, que acabamos de ativar, em prática. Estamos trabalhando com o bucket
+"rmerces-labs5", que está com o versionamento ativado.
+
+Vamos usar os comandos echo 1 > e cat para criar um arquivo, "teste.txt", com o número 1 como conteúdo. Na sequência
+vamos subir esse objeto para nosso bucket:
+
+echo 1 > teste.txt
+cat texte.txt
+aws s3 cp teste.txt s3://rmerces-labs5
+
+Se, enquanto trabalhamos no projeto, precisarmos alterar o conteúdo do arquivo, basta inserirmos o comando echo, mas
+substituindo o 1 pelo 2, por exemplo, antes de subir o arquivo:
+
+echo 2 > teste.txt
+aws s3 cp teste.txt s3://rmerces-labs5
+
+Depois disso, a nova versão do arquivo será enviada ao repositório selecionado. Agora executaremos o comando aws s3 ls
+s3://rmerces-labs5. Ao fazer isso, perceberemos que há apenas um arquivo no bucket, apesar de termos feito o upload de
+duas versões. Trata-se da versão mais recente.
+
+Se visualizarmos o repositório via console, poderemos selecionar a opção "Show versions" e, assim, veremos as duas
+versões do arquivo "teste.txt". Apesar de compartilharem do mesmo nome, cada uma delas tem sua própria ID. Quando
+desligamos o botão de "Show versions", visualizamos apenas a versão mais recente.
+
+Agora vamos aprender a listar as versões via CLI. Para fazê-lo, vamos executar o comando
+aws s3api list-object-versions --bucket rmerces-labs5. Já poderemos, com isso, visualizar as duas versões, embora que de
+maneira não muito clara. Deixaremos a visualização mais clara adicionando grep -A1 teste.txt:
+
+aws s3api list-object-versions --bucket rmerces-labs5 | grep - A1 teste.txt
+
+É possível recuperar versões mais antigas, como a primeira versão do arquivo "teste.txt". Primeiro, vamos apagar a
+versão mais atual com rm -rf teste.txt, para que não nos confundamos, e usar o comando
+aws s3api get-object --bucket rmerces-labs5 --key teste.txt --version-id, adicionando, também, a ID da versão desejada e
+teste.txt, ao final, para fazer a recuperação via CLI.
+
+Agora vamos conferir se deu certo, ainda pela linha de comando:
+
+ls
+cat teste.txt
+
+Depois da execução, veremos que o conteúdo do arquivo voltou a ser 1. Logo, recuperamos sua primeira versão com sucesso.
+
+Também é possível recuperar versões antigas pelo console. O processo é, inclusive, mais simples. Basta acessarmos
+"rmerces-labs5 > Show versions > teste.txt > Download". É importante clicarmos na versão de "testes.txt" que desejamos
+restaurar.
+
+No próximo vídeo, vamos aprender sobre life cycle.

@@ -1,0 +1,31 @@
+Agora vamos aprender sobre versionamento. Nessa atividade, continuaremos a usar a CLI para operar o S3.
+
+O versionamento no S3 serve para manter várias versões de um mesmo objeto. Vamos acessar a documentação para saber um
+pouco mais sobre isso.
+
+Rolando a página para baixo, encontraremos a seção "IDs de versão". Nela, há uma ilustração que explica a aplicabilidade
+do versionamento: conforme as alterações vão acontecendo, várias versões do mesmo arquivo são criadas. Toda alteração
+feita é considerada como um novo objeto, com um ID próprio.
+
+Para que isso aconteça, precisaremos habilitar a função de versionamento. Se estivermos no console, faremos isso
+acessando "S3 > rmerces-labs4 > Properties". Depois, rolaremos a página para baixo até a seção "Bucket Versioning". Nela,
+clicaremos em "Edit", selecionaremos "Enable" e salvaremos.
+
+Porém, vamos fazer isso via CLI. Primeiro, vamos verificar os buckets disponíveis com aws s3 ls. Criaremos um novo
+bucket, para manter o padrão de um repositório por atividade, com aws s3 mb s3://rmerces-labs5. Com o bucket criado,
+vamos autorizar o versionamento com um comando longo que pode ser encontrado na parte de "s3api" do AWS CLI Command
+Reference.
+
+Para finalizar, vamos executar um comando igualmente longo, para verificar se tudo certo:
+
+aws s3 ls
+aws s3 mb s3://rmerces-labs5
+aws s3api put-bucket-versioning --bucket rmerces-labs5 --versioning-configuration Status=Enabled
+aws s3api get-bucket-versioning --bucket rmerces-labs5
+
+Obs: No início, essas linhas grandes podem parecer confusas. Mas, no futuro, você poderá automatizar esse processo com
+scripts.
+
+Faremos um exercício para colocar o versionamento em prática, subindo arquivos e gerando novas versões.
+
+Na próxima aula, vamos dar continuidade à nossa rota de aprendizado em S3!
