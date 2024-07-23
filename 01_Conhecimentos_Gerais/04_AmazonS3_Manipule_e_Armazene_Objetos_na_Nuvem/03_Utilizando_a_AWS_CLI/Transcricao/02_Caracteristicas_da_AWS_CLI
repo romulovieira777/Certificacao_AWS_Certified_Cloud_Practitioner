@@ -1,0 +1,8 @@
+A AWS CLI nos permite interagir com o seguintes serviços:
+
+A) É exclusiva para utilização do serviço S3.
+
+B) Permite a utilização de diversos serviços da AWS. -> Alternativa correta
+    R: Exatamente. Através da CLI temos acesso ao gerenciamento dos serviços da cloud sem depender da console web.
+
+C) Permite a utilização dos serviços S3 e EC2.

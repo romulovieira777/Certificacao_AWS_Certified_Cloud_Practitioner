@@ -1,0 +1,60 @@
+Vamos continuar a interagir com o terminal. Devemos acessar https://docs.aws.amazon.com/cli/latest/index.html, onde
+encontraremos a lista de comandos disponíveis na AWS CLI. Vamos rolar a página para baixo até encontrarmos a opção "s3",
+na qual clicaremos.
+
+Nessa página, encontramos os comandos básicos. De volta ao terminal, vamos criar um novo bucket, inserindo o comando aws
+s3 mb s3://rmerces-labs4. Vamos verificar se o novo repositório realmente foi criado, com o comando aws s3 ls. Ao fazer
+isso, perceberemos que o processo funcionou.
+
+Agora que o bucket está criado, vamos enviar objetos a ele. No vídeo, o instrutor acessa a pasta "sysctl > sysctl.d" do
+seu computador pela linha de comando. Vamos acessar alguma pasta do nosso computador. Depois, usaremos o comando ls para
+visualizar os arquivos que podemos enviar ao repositório:
+
+cd /etc/sysctl.
+cd /etc/sysctl.d
+ls
+
+A manipulação do AWS pela CLI é mais proveitosa, porque é o que vamos utilizar para criar nossos scripts e automações.
+Agora, vamos usar o comando cp para copiar algum arquivo da nossa pasta para o bucket s3://rmerces-labs4. No vídeo, o
+instrutor envia a cópia do arquivo README.sysctl:
+
+aws s3 cp README.sysctl s3://rmerces-labs4
+
+Poderíamos checar se deu certo pelo console, mas faremos isso pela CLI. Basta inserir o comando aws s3 ls
+s3://rmerces-labs4. Com isso, veremos que o conteúdo foi copiado no novo bucket. Podemos copiar arquivo por arquivo, mas
+o comando sync é capaz de sincronizar os conteúdos do repositório local e do S3:
+
+aws s3 sync . s3://rmerces-labs4
+
+Depois disso, podemos checar o bucket e perceber que todos os conteúdos do repositório local agora estão presentes no S3.
+Agora, vamos até o navegador para verificar, via console, a presença dos novos objetos.
+
+Acessaremos "Amazon S3 > Buckets > rmerces-labs4". Nesse repositório, estarão os arquivos que acabamos de enviar via CLI.
+Com isso, percebemos como é simples operar essa ferramenta pela linha de comando.
+
+Vamos voltar à página "Buckets". Se tentarmos selecionar e deletar o bucket "rmerces-labs1", receberemos o aviso de que
+o repositório não está vazio e não será possível deletá-lo. Precisaremos limpar o bucket antes de exclui-lo. Vamos
+voltar à página anterior e, com o repositório "rmerces-labs1" selecionado, clicaremos no botão "Empty".
+
+Essa funcionalidade serve para esvaziar um repositório. Basta digitar "permanently delete" na caixa de texto para
+confirmar a ação. Depois disso, já com o bucket vazio, conseguiremos deletá-lo.
+
+Agora vamos aprender a excluir um bucket *pelo terminal. No caso, o repositório "rmerces-labs3". Faremos isso executando
+o comando aws s3 rb s3://rmerces-labs3. Assim como no *console, não conseguiremos completar a ação, porque o bucket não
+está vazio. Antes, precisaremos esvaziá-lo.
+
+Para fazer isso, basta adicionar --force ao comando:
+
+aws s3 rb s3://rmerces-labs3 --force
+
+Depois disso, tanto os objetos quanto o bucket *serão deletados permanentemente. Se executarmos o comando aws s3 ls,
+veremos que os *buckets restantes são "rmerces-labs2" e "rmerces-labs4".
+
+Antes de avançarmos para a próxima aula, o instrutor pede que façamos o exercício de acessar "IAM > User > Add users"
+para criar um novo usuário, o "s3-user2". Em "Select AWS access type", selecionaremos a primeira opção,
+"Access key - Programmatic access". Vamos adicionar esse novo usuário ao grupo de view.
+
+O objetivo da atividade é operar a AWS pela CLI. Vamos tentar excluir um bucket pela linha de comando. E aí, será que
+conseguiremos?
+
+No próximo vídeo, vamos aprender sobre versionamento, life cycle e outras funções do S3.
