@@ -1,0 +1,6 @@
+Nessa aula, nós:
+    - Entendemos o conceito de “banco de dados como serviço”, ou bancos de dados gerenciados;
+    - Percebemos que existem diferentes tipos de banco de dados e que a AWS fornece um serviço diferente para cada tipo,
+    como DocumentDB, MemoryDB, etc;
+    - Conferimos que AWS fornece um outro serviço de bancos de dados relacionais além do que abordaremos no curso. Esse
+    serviço, focado em data warehouse, se chama Redshift.

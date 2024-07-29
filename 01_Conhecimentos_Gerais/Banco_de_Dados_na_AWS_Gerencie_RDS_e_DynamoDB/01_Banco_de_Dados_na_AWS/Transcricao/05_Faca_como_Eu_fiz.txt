@@ -1,0 +1,5 @@
+Nessa aula nós conhecemos o conceito de bancos de dados como serviços na AWS.
+
+Chegou a hora de você conferir alguns dos serviços citados nessa aula e refletir sobre quais deles poderiam ser úteis em
+seus projetos.
+

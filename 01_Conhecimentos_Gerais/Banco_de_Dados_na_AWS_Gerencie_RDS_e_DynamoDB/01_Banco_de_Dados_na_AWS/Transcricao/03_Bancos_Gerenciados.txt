@@ -1,0 +1,14 @@
+O termo “gerenciado” (managed em inglês) é bastante usado quando pesquisamos sobre os bancos de dados como serviços na
+AWS.
+
+Qual a vantagem de ter um serviço de banco de dados gerenciado pelo provedor de nuvem (AWS)?
+
+A) Não precisamos nos atentar a tantos detalhes de infraestrutura. -> Alternativa correta
+    R: Em serviços gerenciados como os citados nessa aula, a AWS vai se encarregar de criar as máquinas virtuais,
+    torná-las disponíveis na rede, etc. Isso nos permite focar em tarefas específicas do serviço como configuração de
+    backups automáticos, etc. Importante ressaltar: embora parte da carga de trabalho seja abstraída, ainda conseguimos
+    configurar a quantidade de recursos que o banco terá disponível, qual rede poderá acessar, etc.
+
+B) Não precisamos nos preocupar com absolutamente nada de infraestrutura.
+
+C) Não precisamos ter conhecimento sobre o banco de dados em si.

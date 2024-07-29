@@ -1,0 +1,106 @@
+Antes de conhecer alguns bancos de dados na AWS, vamos imaginar um cenário. Eu trabalho em uma plataforma de marketing
+com divulgação e gestão de redes sociais. Nessa plataforma, há dados que precisam ser armazenados de forma relacional,
+pois possuem regras bem definidas e relacionamentos com outras entidades. Ou seja, um banco de dados relacional faz
+muito sentido nesse cenário.
+
+Nesse sistema, precisamos de performance, então é necessária uma camada de cache para ter acesso a esses dados. Sendo
+assim, também usaremos um banco de dados em memória.
+
+Uma parte da nossa aplicação é muito intensa tanto em tráfego quanto em volume de dados — muitos dados trafegando com
+muita frequência. Nesse cenário, é interessante um banco de dados não relacional.
+
+Além disso, como trabalhamos com uma arquitetura de microsserviços, temos diversos serviços gerando informações e
+precisamos agregá-las para que a equipe de dados consiga gerar relatórios e métricas internamente e para clientes. Tudo
+isso precisa ser centralizado em outro banco de dados, focado em armazenar uma quantidade grande de dados com
+possibilidades interessantes para diferentes relatórios — talvez um banco de dados focado em *data warehouse.
+
+Em pouco tempo, apresentamos um cenário de um sistema que pode nem ser tão complexo, mas já demos exemplos de quatro
+tipos diferentes de bancos de dados que seriam usados nessa aplicação. No mundo real, nos deparamos muito comumente com
+esse tipo de situação em que, para cada parte de uma aplicação, é interessante usar um tipo de banco de dados diferente.
+
+Nessas situações, caso você tenha a possibilidade de estar em um ambiente de nuvem, você terá uma grande vantagem. A AWS,
+por exemplo, fornece diversos serviços ou bancos de dados como serviços para que você tenha todos esses tipos de bancos
+de dados de forma gerenciada pela Amazon.
+
+Banco de dados como serviço
+
+Basicamente, ter um banco de dados como serviço (ou banco de dados gerenciado pela AWS) é delegar a responsabilidade da
+gestão de infraestrutura de um banco de dados para a infraestrutura de nuvem — no caso, a AWS.
+
+Vamos imaginar que queremos colocar um MySQL em produção. Poderíamos acessar uma máquina virtual através do EC2 e
+instalar o MySQL. Contudo, a AWS fornece um serviço que traz facilidades no gerenciamento de um banco de dados
+relacional.
+
+Se precisássemos de um banco de dados para data warehouse, poderíamos provisionar toda a infraestrutura dentro do EC2
+também, instalando um banco de dados focado em data warehouse e configurando à nossa necessidade. Contudo, a AWS já
+fornece um banco de dados de data warehouse. O mesmo serve para banco de dados em memória, banco de dados de documentos
+e vários outros tipos.
+
+Em resumo, a ideia de um banco de dados como serviço é a AWS fornecer o serviço de gestão da infraestrutura. Nós
+informamos as necessidades do sistema e ela provisionará e gerenciará um banco de dados para nós.
+
+A AWS nos fornece algumas opções. Pensando no cenário que criamos no início dessa aula, precisaríamos de:
+
+    - um banco de dados relacional
+    - um banco de dados em memória
+    - um banco de dados não relacional
+    - um banco de dados para data warehouse
+
+Para conferir a lista de serviços de bancos de dados fornecidos pela Amazon, vamos acessar
+aws.amazon.com/pt/products/databases/. No início da tela, já temos o seguinte título:
+
+Bancos de dados na nuvem da AWS
+
+Modernize sua infraestrutura de dados com bancos de dados de propósito específico totalmente gerenciados
+
+Repare na expressão "totalmente gerenciados", esse é o ponto que queremos enfatizar. Nós poderíamos provisionar nossa
+infraestrutura no EC2, criando as máquinas virtuais e instalando um servidor de banco de dados. Porém, seria necessário
+sempre cuidar da infraestrutura, do seu escalonamento, de sua disponibilidade. Ao delegar essa responsabilidade para a
+AWS, temos várias facilidades, especialmente quando já sabemos que tipo de banco de dados precisamos.
+
+Descendo nessa tela, abaixo do título "Serviços de banco de dados", temos uma tabela que nos informa o tipo de banco de
+dados, o propósito e os serviços fornecidos pela AWS:
+
+Tipo de banco de dados	Casos de uso	Serviço da AWS
+
+Relacional	Aplicações tradicionais, planejamento de recursos empresariais (ERP), gerenciamento de relacionamento com o cliente (CRM), comércio eletrônico	Amazon Aurora, Amazon RDS, Amazon Redshift
+Chave-valor	Aplicativos da Web de alto tráfego, sistemas de comércio eletrônico, aplicações de jogos	Amazon DynamoDB
+Em memória	Armazenamento em cache, gerenciamento de sessões, tabelas de classificação de jogos, aplicações geoespaciais	Amazon ElastiCache, Amazon MemoryDB for Redis
+
+Por exemplo, vamos supor que precisamos de um banco de dados relacional para armazenar dados da aplicação ou para data
+warehouse em que queremos poder ter consultas em SQL e várias entidades diferentes. Nesse caso, temos serviços como o
+Amazon RDS e o Amazon Aurora (que estudaremos no curso) e o Amazon Redshift (que apenas comentaremos no curso), este
+último focado em data warehouse.
+
+Já se precisássemos de um banco de dados chave-valor para um cenário de muito tráfego e grande volume de dados, temos o
+DynamoDB, que exploraremos nesse curso também.
+
+Para armazenar o cache da aplicação, podemos usar um banco de dados em memória, como o Amazon ElastiCache. Ele tem
+acesso muito rápido e configurações específicas para isso. Caso você já possua uma aplicação rodando em outro provedor
+de nuvem ou fora da nuvem, utilizando Redis (um banco de dados em memória muito famoso), a Amazon já possui um serviço
+compatível com Redis, chamado Amazon MemoryDB for Redis. Então, você poderia subir esse serviço e configurar sua
+aplicação para apontar para lá e tudo continuaria funcionando.
+
+Se nossa aplicação usar PostgreSQL ou MySQL, podemos selecionar esses mecanismos no Amazon RDS. Se usamos o MongoDB como
+banco de dados para documentos, temos a opção do Amazon DocumentDB.
+
+Analisando o restante da tabela, sabemos que para um banco de dados do tipo:
+
+    - coluna ampla (wide-column), usa-se o Amazon Keyspaces
+    - grafo, usa-se o Amazon Neptune
+    - séries temporaria, usa-se o Amazon Timestream
+    - ledger, usa-se o Amazon Ledger Database Services (QLDB)
+
+Para cada tipo de banco de dados ou até mesmo para alguns bancos de dados mais conhecidos, temos um serviço na AWS nos
+fornece isso de forma completamente gerenciada.
+
+Para o cenário que criamos no início da aula, poderíamos usar:
+
+    - RDS como banco relacional par armazenar dados "tradicionais"
+    - Redshift para data warehouse
+    - DynamoDB como banco não relacional para alto tráfego de dados
+    - ElastiCache ou MemoryDB para a camada de cache
+
+Neste curso, focaremos no RDS e citaremos o Aurora, aprendendo a gerenciar bancos de dados relacionais na AWS. Também aprenderemos um pouco sobre banco de dados não relacionais com DynamoDB, entendendo a utilizá-lo e configurá-lo. Assim, estaremos bem encaminhados em nossos estudos de bancos de dados em nuvem.
+
+No próximo vídeo, falaremos resumidamente sobre o Redshift, um banco de dados para data warehouse.
