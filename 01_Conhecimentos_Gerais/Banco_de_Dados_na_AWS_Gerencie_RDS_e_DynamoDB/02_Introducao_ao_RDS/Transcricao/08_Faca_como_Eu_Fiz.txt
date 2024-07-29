@@ -1,0 +1,14 @@
+Chegou a hora de você colocar em prática o que vimos neste capítulo e praticar os conhecimentos.
+
+Caso tenha dúvidas, confira o andamento do seu projeto clicando na Opinião do Instrutor.
+
+Opinião do instrutor
+
+Siga os seguintes passos:
+
+    1) Acesse o console do RDS em sua conta da AWS;
+    2) Crie uma nova instância de banco de dados MySQL chamada “primeiro-bd”;
+    3) Selecione o nível gratuito para não ser cobrados por esse teste;
+    4) Defina um nome de usuário e senha conforme desejar;
+    5) Permita o acesso público a essa instância do RDS (lembre-se que para efetivamente acessá-lo, precisará configurar
+    o grupo de segurança).

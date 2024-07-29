@@ -1,0 +1,8 @@
+Automatically connecting an EC2 instance and a DB instance
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ec2-rds-connect.html
+
+Preço do Amazon RDS
+https://aws.amazon.com/pt/rds/pricing/
+
+Calculadora de preços da AWS
+https://calculator.aws/#/

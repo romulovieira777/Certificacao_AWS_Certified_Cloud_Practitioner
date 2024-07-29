@@ -1,0 +1,7 @@
+Nessa aula, nós:
+
+    - Conhecemos o que é o serviço RDS e as vantagens de se ter um serviço de banco de dados gerenciado pela AWS;
+    - Criamos uma instância de banco de dados no RDS;
+    - Conhecemos o banco de dados Aurora, que é um mecanismo criado pela AWS focado no ambiente em nuvem e
+    super-otimizado para esse cenário;
+    - Entendemos a precificação do RDS que é feita levando em consideração o tempo de uso e espaço de armazenamento.

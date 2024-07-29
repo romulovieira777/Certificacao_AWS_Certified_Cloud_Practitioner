@@ -1,0 +1,9 @@
+Ao criar uma instância do RDS, há uma seção chamada “Conectividade”. Nela nós podemos configurar a conexão entre RDS e
+EC2 de forma mais amigável.
+
+O que essa configuração faz, por baixo dos panos, nada mais é do que criar um grupo de segurança e adicionar tanto a
+instância EC2 quanto RDS a esse grupo. Dessa forma, a instância EC2 conseguirá acessar o banco de dados na instância
+RDS.
+
+Caso queira ler com mais detalhes os requisitos para essa configuração, você pode conferir no link a seguir a
+documentação da AWS (em inglês) que explica como esse processo é feito.

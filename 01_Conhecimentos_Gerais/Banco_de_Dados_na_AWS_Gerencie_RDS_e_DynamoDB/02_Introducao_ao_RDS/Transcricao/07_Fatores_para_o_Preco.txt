@@ -1,0 +1,14 @@
+Mariana precisa implantar um novo banco de dados relacional na empresa onde ela gerencia a infraestrutura. Como a
+empresa usa AWS, Mariana escolheu utilizar RDS para essa tarefa. Um ponto importante a ser considerado por ela é o preço
+desse serviço.
+
+Quais são os fatores analisados para a precificação de uma instância RDS?
+
+A) Espaço de armazenamento. -> Alternativa correta
+    R: Quanto mais espaço utilizarmos, seja para efetivamente ter os dados no banco ou para guardarmos backup, mais caro
+    pagaremos pelo serviço.
+
+B) Tempo de uso. -> Alternativa correta
+    R: A cada hora que nossas instâncias RDS ficam disponíveis, somos cobrados também.
+
+C) Tráfego de dados na rede.

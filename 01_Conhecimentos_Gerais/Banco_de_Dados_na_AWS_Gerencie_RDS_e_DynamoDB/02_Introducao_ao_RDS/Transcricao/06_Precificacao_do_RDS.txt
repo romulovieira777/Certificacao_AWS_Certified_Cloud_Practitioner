@@ -1,0 +1,85 @@
+Agora, falaremos de assunto muito importante quando estudamos qualquer recurso em qualquer ambiente de nuvem: a
+precifição. Vamos entender como funciona a cobrança do serviço RDS.
+
+Precificação
+Para encontrar os preços de qualquer serviço da AWS, basta pesquisar o nome do serviço seguido da palavra "pricing". Por
+exemplo, vamos abrir uma nova aba no navegador e buscar "rds pricing". O primeiro resultado já será a página de preços
+do RDS.
+
+No topo dessa página, temos o título "Definição de preço do Amazon RDS". Logo abaixo, há dois grandes botões:
+
+    - Comece a usar gratuitamente
+    - Solicite uma cotação de preços
+
+Como percebemos anteriormente, podemos usar alguns recursos gratuitamente. Já se você trabalha em uma empresa e pretende
+gerenciar um serviço grande, é interessante entrar em contato com o serviço de vendas da Amazon para conseguir
+descontos. Para nossos estudos, vamos apenas focar na lista de preços disponibilizada.
+
+Primeiramente, há informações sobre o nível gratuito, semelhante ao EC2. Temos 750 horas por mês em instâncias
+db.t2.micro, db.t3.micro e db.tg4.micro em uma única zona de disponibilidade. Se tivermos mais de uma instância, as 750
+horas são divididas entre elas. Por exemplo, podemos ter uma instância rodando o mês todo ou duas instâncias rodando por
+15 dias sem custos.
+
+Além disso, há custos pelo armazenamento. No nível gratuito, temos até 20 GB de armazenamento de uso geral (SSD) e 20 GB
+para back-ups automatizados, utilizando snapshots.
+
+Em resumo, são 750 horas nas instâncias listadas acima e 40 GB de armazenamento (20 GB para uso geral e 20 GB para
+back-ups).
+
+Assim, já temos uma noção de como funciona a precificação:
+
+    - por tipo de instância, cobrado por hora
+    - pela quantidade de armazenamento utilizada
+
+O custo de cada uma dessas partes depende do banco de dados escolhido. Por exemplo, o Amazon Aurora é mais caro que o
+MySQL, dado que é um banco de dados mais performático e que oferece mais recursos. Em uma nova aba, vamos acessar a
+definição de preço do Amazon Aurora. Em outra aba, podemos abrir a definição de preço do Amazon RDS para MySQL.
+
+Amazon Aurora
+
+Na página definição de preços do Amazon Aurora, temos uma explicação desse serviço. No tópico "Instâncias de banco de
+dados", há duas opções de edições:
+
+    - Aurora edição compatível com MySQL
+    - Autora edição compartível com PostgreSQL
+
+Ao expandir cada seção, podemos ler uma explicação dos tipos de bancos de dados disponíveis, com exemplos de custos
+conforme o crescimento do sistema. Selecionando a opção "Instância sob demanda provisionada", há uma tabela de preços.
+Por exemplo, uma instância db.t4g.medium custa $0,073 por hora.
+
+Amazon RDS para MySQL
+Semelhante ao Amazon Aurora, também há uma explicação no início da página de definição de preços do Amazon RDS para
+MySQL.
+
+No tópico "Instâncias de banco de dados sob demanda", podemos selecionar a implantação "Single-AZ" (isto é, em uma única
+zona de disponibilidade) e escolher uma região para consultar uma tabela bem simples de preços por hora. Por exemplo, na
+região "Leste dos EUA (Ohio)", uma instância db.t4g.medium tem o preço de $0,065 por hora.
+
+No tópico "Armazenamento de banco de dados", também temos uma precificação diferente para cada tipo de SSD. Por exemplo,
+um SSD de uso geral (gp2) tem o custo de $0,115 por GB por mês.
+
+Em outras palavras, pagamos com base na instância por hora e com base do volume de dados utilizados por gigabytes por
+mês.
+
+Comparações
+
+Repare que a precificação de uma instância comum da RDS é relativamente simples. Já a precificação do Amazon Aurora é um
+pouco mais complexa.
+
+Podemos comparar, por exemplo, o preço de instâncias db.t4g.medium. No momento de gravação deste curso, o custo no
+Amazon Aurora é de $0,073 por hora. Já no RDS para MySQL, o custo é de $0,065 por hora. Como comentamos, o Amazon Aurora
+é mais caro, pois é um serviço capaz de lidar com maiores volumes de dados.
+
+Além disso, podemos (e devemos) utilizar a calculadora de custos da AWS. Ela serve para diversos serviços da AWS,
+inclusive os que estamos explorando neste curso.
+
+Na calculadora, podemos informar o tipo de instância, a região e o período de uso para obter um custo mensal estimado,
+no canto inferior esquerdo da tela. Dessa forma, temos flexibilidade para nos planejar, pois sabemos uma estimativa de
+custos antes de contratar o serviço.
+
+Supondo que recebemos uma solicitação para criar uma instância de banco de dados no RDS, podemos usar a calculadora para
+estimar preços mensais e apresentá-los para as pessoas responsáveis pelos custos.
+
+Na sequência, vamos aprender a gerenciar mais recursos do RDS, por exemplo, configuração de back-ups e uso de mais de
+uma zona de disponibilidade. Descobriremos o que podemos fazer para tornar nossa infraestrutura de banco de dados mais
+escalável.

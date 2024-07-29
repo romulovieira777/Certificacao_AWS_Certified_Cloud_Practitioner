@@ -1,0 +1,13 @@
+Roberto está fazendo esse curso de bancos de dados da AWS aqui na Alura e seguiu exatamente os passos dessa aula, porém
+ao tentar se conectar ao banco de dados criado via CLI, a conexão foi negada.
+
+O que está impedindo o acesso de Roberto ao banco de dados a partir de outro computador?
+
+A) A falta da configuração de usuário e senha.
+
+B) A falta da configuração do security group. -> Alternativa correta
+    R: Nessa aula nós usamos o security group chamado default, que simplesmente libera o acesso à instância a partir da
+    mesma VPC, mas partindo de fora (do nosso computador, por exemplo) o acesso não foi liberado. Isso foi visto de
+    forma bem extensa no curso de EC2 e de VPC.
+
+C) A definição de acesso público.
