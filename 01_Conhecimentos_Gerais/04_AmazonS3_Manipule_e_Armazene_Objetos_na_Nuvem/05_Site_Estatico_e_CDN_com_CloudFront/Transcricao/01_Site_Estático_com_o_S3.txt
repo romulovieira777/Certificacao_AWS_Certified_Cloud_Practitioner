@@ -1,0 +1,69 @@
+Em breve, vamos trabalhar com o CloudFront, nosso serviço de CDN. Antes disso, porém, vamos limpar nossos buckets, para
+evitar a possibilidade de que ultrapassemos os limites do free tier e sejamos cobrados pelo uso.
+
+Vamos criar um site estático, sem preocupações com servidor. É possível fazer isso a partir da criação de um bucket, que
+fará as vezes de servidor, desde que o conteúdo da página seja estático.
+
+Acessaremos "Amazon S3 > Buckets > Create bucket". Em "Bucket name", vamos digitar "site.rmerceslabs.com". Caso nosso
+interesse, no futuro, seja vincular nosso domínio, precisaremos nomear o bucket com o host e com o domínio nos quais
+faremos o apontamento.
+
+Não faremos isso neste treinamento. Por isso, poderemos dar o nome que quisermos ao repositório. A "AWS Region" será,
+novamente, "US East (N. Virginia) us-east-1". Depois, criaremos o bucket sem outras alterações na configuração.
+
+Vamos acessar "site.rmerceslabs.com > Properties > Static website hosting > Edit". Nesta página, vamos informar nossa
+página principal, que é "index.html", na seção "Index document". Depois que salvarmos, o bucket será capaz de hospedar
+um site após mais alguns passos.
+
+Depois de copiar o código, vamos acessar "site.rmerceslabs.com > Block public access (bucket settings) > Edit". Agora,
+vamos retirar a seleção de "Block all public access" e avançar para a próxima página, após confirmar a alteração.
+
+Depois disso, vamos rolar a página para baixo, até a seção Bucket policy. Nela, clicaremos em "Edit > Policy examples".
+Em "Policy", adicionaremos a política que pode ser encontrada em
+https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html#step3-edit-block-public-access,
+mas substituindo "Bucket-Name" pelo nome do nosso repositório:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::site
+                                    rmerceslabs.com/*"
+            ]
+        }
+    ]
+}
+
+Basta salvar para aplicar as alterações. Agora o bucket está público. Chegou a hora de abrirmos a CLI para adicionar
+objetos ao nosso repositório. Vamos executar o comando mkdir site.rmerceslabs.com para criar um diretório com esse nome.
+
+Depois, vamos abri-lo com cd site.rmerceslabs.com/ e inserir um index HTML, com o comando vi index.html. O template que
+usaremos, após a execução, também pode ser encontrado em
+https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html#step3-edit-block-public-access:
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>My Website Home Page</title>
+</head>
+<body>
+  <h1>Welcome to RMERCESLABS.COM</h1>
+  <p>Now hosted on Amazon S3!</p>
+</body>
+</html>
+
+Agora vamos salvar o conteúdo com o comando x. Depois, precisaremos enviar isso tudo para o bucket, ainda através da CLI,
+com aws s3 cp index.html s3://site.rmerceslabs.com.
+
+Vamos verificar se o processo funcionou. De volta ao nosso bucket, vamos acessar a aba "Properties" para identificar a
+URL. No fim da última seção da página, "Static website hosting", encontraremos o endereço do site.
+
+Se o abrirmos, conseguiremos acessar a página web. Portanto, tivemos sucesso na hospedagem do nosso estático via bucket.
+
+No próximo vídeo, vamos usar o CloudFront vinculado a um projeto de streaming de vídeos e criar uma URL https.

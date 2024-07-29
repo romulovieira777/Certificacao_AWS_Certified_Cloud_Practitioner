@@ -1,0 +1,39 @@
+Agora vamos para o último ponto do nosso curso, combinar o serviço de CloudFront com o S3.
+
+CloudFront é o serviço de CDN utilizado pela AWS. Podemos configurar o bucket para servir arquivos via S3, mas a
+latência, nesse caso, só será baixa se os usuários estiverem na mesma localização geográfica do repositório. Para
+resolver esse problema, usaremos nosso serviço de CDN, para entregar o conteúdo sempre na localização do cliente, via
+cache.
+
+Vamos dar uma olhada na imagem disponibilizada pelo S3 Management Console, para entender melhor o funcionamento desse
+serviço:
+
+Obs: O CloudFront, como qualquer outro serviço da AWS, é pago.
+
+Vamos acessar a aba "Preço", em https://aws.amazon.com/pt/cloudfront/. Podemos lê-la com mais calma depois, para
+conhecer melhor o serviço. Agora, colocaremos a mão na massa. Vamos adicionar um arquivo de vídeo e aprender a
+disponibilizar isso para os usuários.
+
+Acessaremos "Amazon S3 > Buckets > Create bucket". Em "Bucket name", digitaremos "videos.rmerceslabs".A "AWS Region"
+será a mesma dos vídeos anteriores, "US East (N. Virginia) us-east-1". Vamos ignorar as outras seções e clicar em
+"Create bucket".
+
+Vamos acessar, agora, "Buckets > videos.rmerceslabs" e fazer o upload do arquivo de vídeo. De volta à página do bucket,
+vamos repetir o processo dos vídeos anteriores: vamos até "Permissions > Block public access > Edit". Vamos manter a
+opção "Block all public access" selecionada, porque queremos que o acesso só seja possível via CloudFront.
+
+Agora, na AWS, vamos acessar "CloudFront > Create a CloudFront distribution". Em "Origin domain", selecionaremos
+"videos.merceslabs.s3.amazonaws.com", apontando para o bucket que acabamos de criar.
+
+Vamos rolar a página para baixo, até a opção "S3 Bucket Access". Lá, selecionaremos a opção "Yes use OAI (bucket can
+restrict access to only CloudFront)", para que o acesso só seja liberado via CloudFront.
+
+Em "Origin access identity", clicaremos em "Create new OAI". Vamos manter o nome sugerido pela AWS. Em "Bucket policy",
+vamos manter a opção "Yes, update the bucket policy", para que não precisemos atualizar a policy manualmente. Não vamos
+alterar as outras seções, apenas clicaremos em "Create distribution", ao fim da página.
+
+Seremos redirecionados a uma nova página, que informa nossa URL. O processo de deploying demora algum tempo para ser
+finalizado, e seu status também é encontrado na página. Acessando "S3 > videos.rmerceslabs > Properties", veremos que a
+policy foi atualizada. Agora, a ação GetObject só poderá ser executada via CloudFront.
+
+No próximo vídeo, após a finalização do deploying, daremos continuidade a esse processo.

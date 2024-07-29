@@ -1,0 +1,6 @@
+Nesta aula aprendemos:
+
+    - Utilizar o S3 para hospedar um site estático;
+    - Aplicar políticas para acesso ao site estático;
+    - Vincular o Cloud Front (cdn) ao site estático;
+    - Utilizar o S3 através do cloudfront.

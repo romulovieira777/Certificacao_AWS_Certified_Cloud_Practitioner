@@ -1,0 +1,16 @@
+Parabéns para nós! Chegamos ao fim desse treinamento de AWS S3!
+
+Mas, antes de retomarmos os principais pontos aprendidos com os vídeos, vamos aprender a limpar os buckets que têm
+versionamento ativado. Para fazer isso, precisaremos acessar a aba "Properties" dos buckets e, em "Bucket Versioning",
+clicar em "Edit". Bastará selecionar a opção "Suspend" e salvar para conseguir deletar os arquivos versionados.
+
+Conhecemos o S3, serviço de armazenamento de objetos da AWS. Aprendemos o que são esses objetos e que eles independem do
+tipo de arquivo. Com o S3, podemos fazer backup, armazenamento e usá-lo como uma área de transferência.
+
+Também conhecemos fatores que precisam ser levados em conta quando trabalhamos com esse serviço, como as classes de
+armazenamento. Ainda que o bucket não siga as regras de lifecycle, podemos criá-lo já com a definição da sua classe.
+
+Aprendemos a operar o S3 via CLI, o que nos trouxe mais autonomia, e a criar policies e usuários, com e sem direito de
+administração. E, por fim, aprendemos a hospedar um site estático, no S3, via CloudFront.
+
+Lembre de rever detalhes, questões conceituais e documentação. Muito obrigado e até o próximo treinamento!

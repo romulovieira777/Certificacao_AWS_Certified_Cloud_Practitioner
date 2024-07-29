@@ -1,0 +1,5 @@
+Tutorial: configurar um site estático no Amazon S3
+https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html#step3-edit-block-public-access
+
+Amazon CloudFront
+https://aws.amazon.com/pt/cloudfront/

@@ -1,0 +1,9 @@
+O serviço CloudFront(cdn) que tem por finalidade acelerar a entrega do conteúdo pode ser ligado a S3 para:
+
+A) Prover um acesso mais rápido para o conteúdo dos buckets.
+
+B) Ambas as opções estão corretas. -> Alternativa correta
+    R: Sim, através do cloudfront temos como acelerar a distribuição do conteúdo do S3. Sejam dos objetos ou mesmo do
+    recurso do site estático.
+
+C) Prover um acesso mais rápido para a hospedagem de sites no S3.

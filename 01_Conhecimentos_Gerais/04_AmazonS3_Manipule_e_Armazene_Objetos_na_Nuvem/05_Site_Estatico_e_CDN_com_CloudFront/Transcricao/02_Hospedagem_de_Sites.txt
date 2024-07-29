@@ -1,0 +1,10 @@
+O S3 tem uma funcionalidade que permite a hospedagem de um site dentro de um bucket. Para tanto, precisamos observar as
+seguintes regras:
+
+A) O conteúdo pode ser dinâmico (PHP, JSP ou ASP.NET).
+
+B) O conteúdo deve ser estático. -> Alternativa correta
+    R: Exatamente. Para utilizarmos esta funcionalidade o site a ser hospedado precisa ter um conteúdo estático, caso
+    contrário ele não funcionará dentro do serviço.
+
+C) Ambas as opções estão corretas.
