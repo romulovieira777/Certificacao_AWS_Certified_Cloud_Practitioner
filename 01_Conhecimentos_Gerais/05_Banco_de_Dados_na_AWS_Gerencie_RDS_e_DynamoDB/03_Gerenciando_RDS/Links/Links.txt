@@ -1,0 +1,2 @@
+Perguntas frequentes sobre o Amazon RDS
+https://aws.amazon.com/pt/rds/faqs/#Automatic_Backups_and_Database_Snapshots

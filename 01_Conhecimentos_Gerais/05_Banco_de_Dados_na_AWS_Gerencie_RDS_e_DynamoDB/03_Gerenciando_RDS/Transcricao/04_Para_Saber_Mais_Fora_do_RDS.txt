@@ -1,0 +1,3 @@
+Como citado nessa aula, a ideia de ter réplicas de leitura de um banco de dados relacional não é algo específico da AWS.
+Os bancos de dados como MySQL, PostgreSQL, Oracle, SQL Server e outros possuem mecanismos para replicar seus dados em
+outro servidor, permitindo a divisão de carga.
