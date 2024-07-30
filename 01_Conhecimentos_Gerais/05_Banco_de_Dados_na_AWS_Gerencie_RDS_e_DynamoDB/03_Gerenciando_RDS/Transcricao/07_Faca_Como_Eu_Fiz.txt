@@ -1,0 +1,20 @@
+Nessa aula nós aprendemos mais funcionalidades necessárias para gerenciar de forma profissional uma base de dados usando
+RDS.
+
+Chegou a hora de você colocar em prática o que vimos neste capítulo e praticar os conhecimentos de RDS.
+
+Caso tenha dúvidas, confira o andamento do seu projeto clicando na Opinião do Instrutor.
+
+Opinião do instrutor
+
+Siga os seguintes passos:
+
+    1) Exclua a instância criada na aula anterior para evitar custos;
+    2) Crie uma nova instância do RDS com backups automatizados habilitados;
+    3) Defina o período de retenção como apenas 1 dia e deixe sem preferência de janela de backup;
+    4) Tire um snapshot da instância recém-criada;
+    5) Na lista de snapshots, selecione esse snapshot recém-tirado e crie um novo banco de dados a partir dele;
+    6) Acesse a lista de bancos de dados e em “Ações”, selecione a opção de “Restaurar para um momento específico” e
+    confira as opções ali disponíveis;
+    7) Crie uma réplica de leitura do seu banco de dados;
+    8) Exclua a réplica de leitura e depois a instância principal. Remova todas as instâncias para evitar custos.

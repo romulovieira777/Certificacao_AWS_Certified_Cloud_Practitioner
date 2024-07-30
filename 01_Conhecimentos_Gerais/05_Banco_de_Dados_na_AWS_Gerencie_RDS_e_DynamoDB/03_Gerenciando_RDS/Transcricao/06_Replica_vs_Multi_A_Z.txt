@@ -1,0 +1,14 @@
+Cláudio está configurando a infraestrutura de uma nova aplicação web e está na etapa de criação de banco de dados. O RDS
+foi o serviço selecionado para essa tarefa e o mecanismo utilizado é o Oracle. A aplicação em questão receberá um número
+muito grande de acessos, com isso, os recursos do banco de dados podem ser bastante exigidos.
+
+Qual das seguintes funcionalidades do RDS Cláudio precisa fazer uso para garantir que o banco de dados consiga aguentar
+a grande carga que é esperada?
+
+A) Réplicas de leitura. -> Alternativa correta
+    R: Com a criação de uma réplica de leitura, a carga da aplicação para o banco de dados pode ser balanceada. Dessa
+    forma os recursos do banco de dados de cada instância serão menos exigidos.
+
+B) Instância de banco de dados Multi-AZ.
+
+C) Cluster de banco de dados Multi-AZ.

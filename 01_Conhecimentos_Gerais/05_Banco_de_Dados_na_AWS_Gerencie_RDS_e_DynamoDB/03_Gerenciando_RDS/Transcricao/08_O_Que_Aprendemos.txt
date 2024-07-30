@@ -1,0 +1,9 @@
+Nessa aula, nós:
+
+    - Conhecemos as duas formas possíveis de se gerar backups com RDS:
+        - Backups automatizados;
+        - Snapshots manuais.
+    - Restauramos nosso banco de dados no RDS a partir dos backups automatizados;
+    - Criamos um novo banco de dados a partir de um snapshot manual;
+    - Conhecemos o conceito de réplica de leitura e criamos uma para nosso banco de dados;
+    - Implantamos mais de uma instância de banco de dados através das configurações de Multi A-Z.
