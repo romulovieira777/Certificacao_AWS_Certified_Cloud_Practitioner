@@ -1,0 +1,14 @@
+Ana é desenvolvedora em uma empresa que usa DynamoDB. Ao realizar uma consulta, ela notou que havia uma pequena demora
+nesse processo. Embora ainda fosse uma consulta bastante rápida, não estava atendendo às expectativas de um banco tão
+performático quanto o DynamoDB. Ana estava usando o modo “Verificar” (Scan) para realizar essa busca.
+
+Qual o problema de realizar uma busca utilizando o modo Scan ao invés do modo Query?
+
+A) O modo Scan percorre toda a tabela aplicando o filtro item a item. -> Alternativa correta
+    R: Se a tabela em questão possuir 1 milhão de itens, o modo Scan vai percorrer cada um desses itens e verificar se
+    atende ao filtro da busca. Já no modo Query, as chaves da tabela são utilizadas. Isso garante que um número muito
+    reduzido de itens será verificado baseado nos valores dessas chaves.
+
+B) O modo Scan usa as chaves para realizar a busca, tornando-a mais rápida.
+
+C) O modo Query percorre toda a tabela aplicando o filtro item a item.

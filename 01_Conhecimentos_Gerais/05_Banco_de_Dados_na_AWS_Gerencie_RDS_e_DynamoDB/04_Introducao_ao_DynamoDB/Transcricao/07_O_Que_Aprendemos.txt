@@ -1,0 +1,12 @@
+Nessa aula, nós:
+
+    - Aprendemos em quando há muitos dados sendo trafegados de forma intensa em uma aplicação, o DynamoDB pode ser uma
+    escolha interessante;
+    - Implementamos em um banco de dados DynamoDB:
+        - Tabelas;
+        - Chaves:
+            - Chave de partição (partition key);
+            - Chave de classificação (sort key ou range attribute).
+        - Atributos;
+    - Inserimos e buscamos itens em uma tabela do DynamoDB, usando os modos de busca Scan e Query, a partir do console
+    da AWS.

@@ -1,0 +1,20 @@
+Nessa aula nós conhecemos o banco de dados DynamoDB, entendendo seu propósito, onde seu uso é interessante e aprendemos
+a trabalhar com os principais conceitos como tabelas, chaves, atributos e buscas.
+
+Chegou a hora de você colocar em prática o que vimos neste capítulo e praticar os conhecimentos de DynamoDB.
+
+Caso tenha dúvidas, confira o andamento do seu projeto clicando na Opinião do Instrutor.
+
+Opinião do instrutor
+
+Siga os seguintes passos:
+
+    1) No console da AWS, acesse a seção do DynamoDB e crie uma nova tabela chamada Config;
+    2) Como chave de partição (partition key), defina user_id com o tipo String;
+    3) Como chave de classificação (sort key), defina setting com o tipo String;
+    4) Deixe as demais opções como padrão;
+    5) Após a criação da tabela, acesse-a e vá até “Explorar itens da tabela”;
+    6) Crie alguns novos itens contendo, além de suas chaves, o atributo enabled como Booleano;
+    7) Busque agora, usando a função “Verificar” (Scan), todos os itens com user_id sendo 1 e setting sendo
+    funcionalidade_1;
+    8) Agora, no modo “Consulta” (Query), realize a mesma busca (lembre-se de remover os filtros).
